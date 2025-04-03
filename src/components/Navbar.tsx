@@ -48,20 +48,20 @@ const Navbar = () => {
 
   useEffect(() => {
     const tl = gsap.timeline();
-  
+
     tl.from("nav", {
       y: -50,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
     })
-    .to("nav", {
-      y: 0,
-      duration: 0.4,
-      ease: "bounce.out",  // Efecto de rebote sutil
-    });
+      .to("nav", {
+        y: 0,
+        duration: 0.4,
+        ease: "bounce.out",  // Efecto de rebote sutil
+      });
   }, []);
-  
+
   const handleOverlayClick = () => {
     setMenuOpen(false); // Cierra el menú cuando se hace clic en el overlay
   };
@@ -85,7 +85,7 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center w-full mx-auto">
           <img
-            src="public/imgs/logos/logo-bzn.png"
+            src="/imgs/logos/logo-bzn.png"
             alt="Logo"
             className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo ${scrolled ? "filter invert brightness-0" : ""
               }`}
@@ -101,7 +101,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:block">
-          <Button text="Saber más" icon={<Plus />} color={scrolled ? "var(--red-200)" : "var(--red)"} />
+            <Button text="Saber más" icon={<Plus />} color={scrolled ? "var(--red-200)" : "var(--red)"} />
           </div>
 
           <button
