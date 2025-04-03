@@ -62,8 +62,6 @@ const Navbar = () => {
     });
   }, []);
   
-  
-
   const handleOverlayClick = () => {
     setMenuOpen(false); // Cierra el menú cuando se hace clic en el overlay
   };
@@ -87,7 +85,7 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center w-full mx-auto">
           <img
-            src="/src/assets/logos/logo-bzn.png"
+            src="public/imgs/logos/logo-bzn.png"
             alt="Logo"
             className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo ${scrolled ? "filter invert brightness-0" : ""
               }`}
