@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.tsx';
+import Hero from '../components/Hero.astro';
+import Emprendimientos from '../components/Emprendimientos.tsx';
+import SliderProyectos from '../components/SliderProyectos.tsx';
+import Servicios from '../components/Servicios.astro';
+import Nosotros from '../components/Nosotros.astro';
+import FooterTop from '../components/FooterTop.astro';
+import FooterMed from '../components/FooterMed.astro';
+import FooterBottom from '../components/FooterBottom.astro';
+---
+
+<Layout>
+	<Navbar client:visible />
+	<Hero />
+	<Emprendimientos client:load />
+	<SliderProyectos client:load />
+	<Servicios/>
+	<Nosotros/>
+	<FooterTop/>
+	<FooterMed/>
+	<FooterBottom/>
+</Layout>

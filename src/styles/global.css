@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset de estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #99192B;
+  --black-0: #0f0f0f;
+  --black: #1A1919;
+  --black-200: #272525;
+  --black-300: #524e4e;
+  --black-400: #868181;
+  --red-200: #EB484E;
+  --white: #FFFFFF;
+}
+
+/* Aplicar Lato a todo */
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+}
+
+/* Cambia el color de las pelotitas inactivas */
+.swiper-pagination-bullet {
+  background-color: var(--red) !important; /* Cambia a cualquier color */
+}
+
+/* Cambia el color de la pelotita activa */
+.swiper-pagination-bullet-active {
+  background-color: var(--red) !important; /* Cambia a cualquier color */
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Personalización del Scroll */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b92e3b;
+}

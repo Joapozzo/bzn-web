@@ -1,0 +1,78 @@
+---
+import Section from "../layouts/Section";
+---
+
+<Section id="about" title="QUIÉNES SOMOS">
+    <div class="max-w-[1200px] mx-auto grid gap-6">
+        <!-- Primera caja -->
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-[#8C1D2C] text-white p-6 flex flex-col justify-center rounded-lg">
+                <h2 class="text-3xl font-bold mb-2">BZN URBAN MAKING</h2>
+                <p class="text-lg">
+                    Somos una desarrollista cordobesa con una trayectoria de más de 40 años en el sector inmobiliario.
+                    Dedicados a la proyección, ejecución y comercialización de edificios de mediana y alta gama, 
+                    nuestros equipos profesionales vienen realizando aportes significativos a una ciudad que crece 
+                    ininterrumpidamente y a una sociedad que busca oportunidades de inversión y hábitat, en mercados 
+                    cada día más competitivos y exigentes.
+                </p>
+            </div>
+            <div class="bg-cover bg-center h-full rounded-lg" style="background-image: url('/imgs/1.jpg');"></div>
+        </div>
+
+        <!-- Segunda caja -->
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-cover bg-center h-full rounded-lg" style="background-image: url('/imgs/2.jpg');"></div>
+            <div class="bg-[var(--red)] text-white p-6 flex items-center rounded-lg">
+                <p class="text-lg">
+                    A lo largo de nuestra historia hemos ejecutado más de 100.000 m² cubiertos, 
+                    con una óptima relación precio-calidad.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tercera caja -->
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="relative bg-cover bg-center h-full flex items-end p-6 text-white rounded-lg" style="background-image: url('/imgs/3.jpg');">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent rounded-lg"></div>
+                <div class="relative p-4">
+                    <p class="text-lg font-medium">
+                        Dirigidos por el Arquitecto Miguel Ángel Bazán, somos una organización reconocida por su 
+                        tradición de empresa pionera, ligada a la arquitectura y al invalorable legado de Angel Bazán, 
+                        hombre de bien, contratista destacado y empresario pionero en una ciudad que hace 40 años 
+                        apenas si soñaba con su actualidad urbana.
+                        <br/><br/>
+                        Con una visión que busca seguir siendo referentes del rubro inmobiliario, nuestro propósito 
+                        es el de seguir estimulando el crecimiento patrimonial de nuestros inversores y clientes, 
+                        basados fundamentalmente en la revalorización histórica y permanente que caracterizan a los 
+                        bienes raíces.
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-[var(--black)] text-white p-4 flex flex-col items-center justify-center text-center rounded-lg gap-2">
+                    <span class="text-4xl">🏢</span>
+                    <span class="text-red-500 text-4xl font-black">+19</span>
+                    <span>EDIFICIOS</span>
+                </div>
+                <div class="bg-[var(--black)] text-white p-4 flex flex-col items-center justify-center text-center rounded-lg gap-2">
+                    <span class="text-4xl">🏠</span>
+                    <span class="text-red-500 text-4xl font-black">+600</span>
+                    <span>DEPARTAMENTOS</span>
+                </div>
+                <div class="bg-[var(--black)] text-white p-4 flex flex-col items-center justify-center text-center rounded-lg gap-2">
+                    <span class="text-4xl">📐</span>
+                    <span class="text-red-500 text-4xl font-black">+40</span>
+                    <span>PROYECTOS</span>
+                </div>
+                <div class="bg-[var(--black)] text-white p-4 flex flex-col items-center justify-center text-center rounded-lg gap-2">
+                    <span class="text-4xl">🏗️</span>
+                    <span class="text-red-500 text-4xl font-black">+100k</span>
+                    <span>M² EJECUTADOS</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</Section>
+
+

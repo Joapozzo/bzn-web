@@ -1,0 +1,102 @@
+/* Contenedor principal */
+.flip-card {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    
+    @media (max-width: 1059px) {
+        width: 400px;
+        height: 400px;
+        perspective: 1000px;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 400px;
+        perspective: 1000px;
+    }
+}
+
+/* Contenedor interno que rota */
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+/* Efecto de giro al pasar el mouse */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Caras de la tarjeta */
+.flip-card-front,
+.flip-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: white;
+    font-size: 20px;
+
+    h2 {
+        font-size: 26px;
+        font-weight: 700;
+    }
+}
+
+/* Estilo para la parte frontal */
+.flip-card-front {
+    background-image: url('imgs/1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilo para la parte trasera */
+.flip-card-back {
+    background-image: url('imgs/2.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    ul {
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    ul > li { 
+        list-style: none;
+        font-size: 18px;
+    }
+}
+
+/* Asegurar que el overlay quede atrás */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    border-radius: 10px;
+    z-index: 1; /* Mantenerlo por debajo del texto */
+}
+
+/* Asegurar que el overlay no tape el contenido */
+.flip-card-front h2,
+.flip-card-front p,
+.flip-card-back p,
+.flip-card-back ul {
+    position: relative; /* Para que queden por encima del overlay */
+    z-index: 2; /* Asegurar que estén sobre la sombra */
+}

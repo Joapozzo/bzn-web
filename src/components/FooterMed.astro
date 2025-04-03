@@ -1,0 +1,75 @@
+---
+import Button from "./UI/Button";
+import Input from "./UI/Input";
+import TextArea from "./UI/TextArea";
+---
+
+<footer id="contact" class="w-full bg-[var(--black)] text-white py-12 px-6">
+  <div class="max-w-[1200px] w-full mx-auto flex flex-col gap-6 px-6">
+    <!-- Contenedor superior -->
+    <div class="flex flex-col md:flex-row justify-between gap-8">
+      <!-- Izquierda: Logo y título -->
+      <div class="flex flex-col gap-5">
+        <h1 class="text-3xl font-bold">
+          GRUPO<span class="text-[var(--red)]">BZN</span>
+        </h1>
+        <h2 class="text-3xl md:text-5xl font-bold max-w-xl">
+          SABEMOS LO QUE <span class="text-[var(--red)]">HACEMOS</span>
+        </h2>
+      </div>
+
+      <!-- Derecha: Menú y formulario -->
+      <div class="flex flex-col md:flex-row gap-12">
+        <!-- Menú de navegación -->
+        <nav
+          class="flex flex-col items-start md:items-start text-start md:text-left w-full w-auto"
+        >
+          <h3 class="font-bold text-lg mb-2">MENÚ</h3>
+          <div class="flex flex-col gap-2">
+                <a href="#" class="hover:text-[var(--white)] text-[var(--black-300)] text-sm">NOSOTROS</a>
+                <a href="#" class="hover:text-[var(--white)] text-[var(--black-300)] text-sm">TRABAJOS</a>
+                <a href="#" class="hover:text-[var(--white)] text-[var(--black-300)] text-sm">SERVICIOS</a>
+                <a href="#" class="hover:text-[var(--white)] text-[var(--black-300)] text-sm">QUIÉNES SOMOS</a>
+          </div>
+
+          <!-- Iconos de redes -->
+          <!-- <div class="flex gap-4 mt-4 flex-col">
+            <a href="#"
+              ><img
+                src="/icons/whatsapp.svg"
+                alt="WhatsApp"
+                class="w-5 h-5"
+              /></a
+            >
+            <a href="#"
+              ><img
+                src="/icons/instagram.svg"
+                alt="Instagram"
+                class="w-5 h-5"
+              /></a
+            >
+            <a href="#"
+              ><img
+                src="/icons/facebook.svg"
+                alt="Facebook"
+                class="w-5 h-5"
+              /></a
+            >
+          </div> -->
+        </nav>
+
+        <!-- Formulario de contacto -->
+        <form class="flex flex-col gap-3 w-full max-w-xs">
+          <h3 class="font-bold text-lg text-center md:text-left">CONTACTO</h3>
+            <Input placeholder="Escriba su nombre..." />
+            <Input placeholder="Escriba su email..." />
+            <Input placeholder="Escriba su teléfono..." />
+            <TextArea placeholder="Escriba un mensaje..." />
+            <Button text="ENVIAR" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Contenedor inferior -->
+</div>
+</footer>
