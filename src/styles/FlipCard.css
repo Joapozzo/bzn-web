@@ -24,6 +24,14 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    backface-visibility: hidden; /* SOLUCIÓN */
+}
+
+/* Caras de la tarjeta */
+.flip-card-front,
+.flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Para Safari */
 }
 
 /* Efecto de giro al pasar el mouse */
