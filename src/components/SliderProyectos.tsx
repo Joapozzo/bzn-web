@@ -1,12 +1,49 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import gsap from "gsap";
 
 const SliderProyectos = () => {
   const [activeTab, setActiveTab] = useState<"caracteristicas" | "ubicacion" | "planos">("caracteristicas");
+
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Importación dinámica de ScrollTrigger solo en el cliente
+    import("gsap/ScrollTrigger").then((module) => {
+      const ScrollTrigger = module.default;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animaciones ScrollTrigger
+      if (leftRef.current && rightRef.current) {
+        gsap.from(leftRef.current, {
+          scrollTrigger: {
+            trigger: leftRef.current,
+            start: "top 80%",
+          },
+          x: -100,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+
+        gsap.from(rightRef.current, {
+          scrollTrigger: {
+            trigger: rightRef.current,
+            start: "top 80%",
+          },
+          x: 100,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      }
+    });
+  }, []);
 
   const slides = [
     { id: 1, image: "/imgs/1.jpg" },
@@ -38,23 +75,21 @@ const SliderProyectos = () => {
       </Swiper>
 
       <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 flex flex-col lg:flex-row justify-between items-start w-full z-10 max-w-[1200px] mx-auto px-6">
-      
+
         {/* Izquierda */}
-        <div className="text-white text-center lg:text-start max-w-[500px]">
+        <div ref={leftRef} className="text-white text-center lg:text-start max-w-[500px]">
           <div className="flex space-x-3 mb-4 justify-center lg:justify-start">
             <span className="bg-[var(--red)] text-white px-4 py-1 rounded text-sm md:text-base">PROYECTO ACTUAL</span>
             <span className="bg-gray-900 text-white px-4 py-1 rounded text-sm md:text-base">EDIFICIOS</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">WISSEN DF</h1>
           <p className="mt-4 text-lg md:text-xl max-w-3xl text-start">
-            “Wissen DF” es un edificio de departamentos que se ubica sobre la calle Dean Funes 1950, B Alberdi de la
-            ciudad de Córdoba. Se trata de una excelente zona residencial con calidad ambiental, ya que se encuentra ubicado
-            a metros de la plaza Dr. Roberto Cisneros, cerca de Av. Colón y Av. Duartes Quirós.
+            “Wissen DF” es un edificio de departamentos que se ubica sobre la calle Dean Funes 1950, B Alberdi de la ciudad de Córdoba...
           </p>
         </div>
 
         {/* Derecha */}
-        <div className="p-4 md:p-6 text-black z-10 w-full max-w-[500px] flex flex-col">
+        <div ref={rightRef} className="p-4 md:p-6 text-black z-10 w-full max-w-[500px] flex flex-col">
           <div className="flex space-x-2 mb-4 bg-[var(--red)] px-4 py-2 rounded-lg justify-center items-center w-full">
             {(["caracteristicas", "ubicacion", "planos"] as const).map((tab) => (
               <button
