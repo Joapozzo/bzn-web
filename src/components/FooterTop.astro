@@ -1,6 +1,9 @@
 ---
 import Button from "./UI/Button";
 import AnimateCta from "../components/AnimateCta"; // asegurate del path
+import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
+
+const textoMensaje = "Hola, quiero contactarme con un asesor. ¿Te interesa?";
 ---
 
 <section
@@ -20,7 +23,7 @@ import AnimateCta from "../components/AnimateCta"; // asegurate del path
       nuestro compromiso con la calidad, el diseño y la seguridad. Descubrí
       nuestras oportunidades y sumate a quienes ya confiaron en nosotros.
     </p>
-    <Button text="HABLAR CON UN ASESOR"/>
+    <Button text="HABLAR CON UN ASESOR" onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}/>
   </div>
 </section>
 

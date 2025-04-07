@@ -5,7 +5,7 @@ interface FlipCardProps {
 }
 
 export default function FlipCard({ emprendimiento }: FlipCardProps) {
-  const { tipo, nombre, direccion, m2, duracion, descripcion } = emprendimiento;
+  const { tipo, nombre, direccion, m2, duracion, descripcion, unidades } = emprendimiento;
 
   // Generar imágenes aleatorias
   const randomFrontImg = `/imgs/${Math.floor(Math.random() * 3) + 1}.jpg`;
@@ -17,7 +17,7 @@ export default function FlipCard({ emprendimiento }: FlipCardProps) {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
-        
+
         {/* Cara frontal */}
         <div className="flip-card-front" style={{ backgroundImage: `url(${randomFrontImg})` }}>
           <div className="overlay"></div>
@@ -30,9 +30,10 @@ export default function FlipCard({ emprendimiento }: FlipCardProps) {
           <div className="overlay"></div>
           <p>{descripcion}</p>
           <ul>
-            {duracion && <li>⏳ {duracion} meses</li>}
-            {m2 && <li>📏 Metros cuadrados: {m2}</li>}
-            {direccion && <li>📍 {direccion}</li>}
+            {duracion && <li>🗓️ Año: {duracion}</li>}
+            {m2 && <li>📐 Metros cuadrados: {m2.toLocaleString()}</li>}
+            {direccion && <li>📍 Dirección: {direccion}</li>}
+            {unidades && <li>🏢 Unidades: {unidades}</li>}
           </ul>
         </div>
 
@@ -40,3 +41,4 @@ export default function FlipCard({ emprendimiento }: FlipCardProps) {
     </div>
   );
 }
+

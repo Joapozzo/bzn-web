@@ -12,10 +12,13 @@ import TypingTitle from "./TypingTitle";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
 interface ImageSliderProps {
   images: string[];
 }
+
+const textoMensaje = "Hola, quiero contactarme con un asesor. ¿Te interesa?";
 
 const stats = [
   { title: 19, text: "EDIFICIOS" },
@@ -156,7 +159,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         </p>
 
         <div className="mt-6">
-          <Button text="HABLAR CON UN ASESOR" icon={<Arrow />} />
+          <Button text="HABLAR CON UN ASESOR" icon={<Arrow />} onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}/>
         </div>
       </div>
     </div>

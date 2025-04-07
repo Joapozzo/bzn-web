@@ -3,11 +3,12 @@ interface ButtonProps {
   outline?: boolean;
   icon?: React.ReactNode;
   color?: string;
+  onClick?: () => void | undefined;
 }
 
-const Button = ({ text, outline, icon, color = "var(--red)" }: ButtonProps) => {
+const Button = ({ text, outline, icon, color = "var(--red)", onClick} : ButtonProps) => {
   return (
-    <div className="w-full md:w-auto">
+    <div className="w-full md:w-auto" onClick={onClick}>
       <a
         href="#"
         className="text-center flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium uppercase transition-all duration-300 border"

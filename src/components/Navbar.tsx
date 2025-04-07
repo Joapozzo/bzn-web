@@ -3,8 +3,11 @@ import gsap from "gsap";
 import NavLink from "./UI/NavLink";
 import Button from "./UI/Button";
 import Plus from "./Icons/Plus";
+import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
 const Navbar = () => {
+  const textoMensaje = "Hola, quiero saber más sobre tu empresa y tus proyectos. ¿Te interesa?";
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -101,7 +104,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:block">
-            <Button text="Saber más" icon={<Plus />} color={scrolled ? "var(--red-200)" : "var(--red)"} />
+            <Button text="Saber más" icon={<Plus />} color={scrolled ? "var(--red-200)" : "var(--red)"} onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}/>
           </div>
 
           <button
@@ -128,7 +131,8 @@ const Navbar = () => {
             <NavLink href="#services" text="Servicios" onClick={abrirMenu} />
             <NavLink href="#about" text="Nosotros" onClick={abrirMenu} />
             <NavLink href="#contact" text="Contacto" onClick={abrirMenu} />
-            <Button text="Saber más" icon={<Plus />} color="var(--red-200)" />
+            <Button text="Saber más" icon={<Plus />} color="var(--red-200)" onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}
+            />
             <div className="hidden md:block"></div>
           </div>
         </div>
