@@ -1,17 +1,28 @@
+import React from "react";
+
 interface ButtonProps {
   text: string;
   outline?: boolean;
   icon?: React.ReactNode;
   color?: string;
-  onClick?: () => void | undefined;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
-const Button = ({ text, outline, icon, color = "var(--red)", onClick} : ButtonProps) => {
+const Button = ({
+  text,
+  outline,
+  icon,
+  color = "var(--red)",
+  onClick,
+  type = "button",
+}: ButtonProps) => {
   return (
-    <div className="w-full md:w-auto" onClick={onClick}>
-      <a
-        href="#"
-        className="text-center flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium uppercase transition-all duration-300 border"
+    <div className="w-full md:w-auto">
+      <button
+        type={type}
+        onClick={onClick}
+        className="w-full text-center flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium uppercase transition-all duration-300 border"
         style={{
           backgroundColor: outline ? "transparent" : color,
           color: outline ? "var(--white)" : "var(--white)",
@@ -30,7 +41,7 @@ const Button = ({ text, outline, icon, color = "var(--red)", onClick} : ButtonPr
       >
         {text}
         {icon && <span className="w-5 h-5 flex items-center justify-center">{icon}</span>}
-      </a>
+      </button>
     </div>
   );
 };

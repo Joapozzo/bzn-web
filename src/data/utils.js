@@ -1,0 +1,1 @@
+export const URL = import.meta.env.PUBLIC_BASE_URL;

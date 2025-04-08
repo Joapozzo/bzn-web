@@ -9,24 +9,22 @@ window.addEventListener("DOMContentLoaded", () => {
     counters.forEach((counter) => {
         const finalValue = parseInt(counter.getAttribute("data-value") || "0");
 
+        const obj = { val: 0 };
+
         ScrollTrigger.create({
             trigger: counter,
             start: "top 90%",
             once: true,
             onEnter: () => {
-                gsap.fromTo(counter,
-                    { innerText: 0 },
-                    {
-                        innerText: finalValue,
-                        duration: Math.min(3, finalValue / 100), // duración dinámica
-                        ease: "power1.out",
-                        snap: { innerText: 1 },
-                        onUpdate: () => {
-                            const current = parseInt((counter as HTMLElement).innerText);
-                            (counter as HTMLElement).innerText = current.toLocaleString("es-AR");
-                        },
-                    }
-                );
+                gsap.to(obj, {
+                    val: finalValue,
+                    duration: 2,
+                    ease: "power1.out",
+                    onUpdate: () => {
+                        const current = Math.floor(obj.val);
+                        (counter as HTMLElement).textContent = current.toLocaleString("es-AR");
+                    },
+                });
             },
         });
     });

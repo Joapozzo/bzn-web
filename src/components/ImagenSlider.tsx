@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import Button from "./UI/Button";
-import Arrow from "./Icons/Arrow";
+import Arrow from "../../public/imgs/icons/Arrow";
 import gsap from "gsap";
 import TypingTitle from "./TypingTitle";
 

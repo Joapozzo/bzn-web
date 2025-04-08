@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import NavLink from "./UI/NavLink";
 import Button from "./UI/Button";
-import Plus from "./Icons/Plus";
+import Plus from "../../public/imgs/icons/Plus";
 import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
 const Navbar = () => {
@@ -66,7 +66,7 @@ const Navbar = () => {
   }, []);
 
   const handleOverlayClick = () => {
-    setMenuOpen(false); // Cierra el menú cuando se hace clic en el overlay
+    setMenuOpen(false);
   };
 
   return (
