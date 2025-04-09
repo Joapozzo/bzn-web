@@ -95,7 +95,6 @@ const Navbar = () => {
             onClick={navToHome}
           />
 
-
           <div className="hidden md:flex gap-4">
             <NavLink href="#works" text="Trabajos" />
             <NavLink href="#services" text="Servicios" />

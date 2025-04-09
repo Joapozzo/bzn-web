@@ -14,10 +14,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
+const images = [
+  "/imgs/1.jpg",
+  "/imgs/2.jpg",
+  "/imgs/3.jpg",
+];
+
 interface ImageSliderProps {
   images: string[];
 }
-
 const textoMensaje = "Hola, quiero contactarme con un asesor. ¿Te interesa?";
 
 const stats = [
@@ -28,6 +33,9 @@ const stats = [
 ];
 
 const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
+
+  const hasAnimatedRef = useRef(false);
+
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [counts, setCounts] = useState(stats.map(() => 0));
@@ -40,7 +48,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }, []);
 
   const animateNumbers = () => {
-    let intervals: NodeJS.Timeout[] = [];
+    let intervals: ReturnType<typeof setInterval>[] = [];
 
     stats.forEach((stat, index) => {
       let count = 0;
@@ -82,8 +90,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
+    if (isVisible && !hasAnimatedRef.current) {
       animateNumbers();
+      hasAnimatedRef.current = true;
     }
   }, [isVisible]);
 
@@ -108,8 +117,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
       );
     }
   }, []);
+
   return (
-    <div ref={sectionRef} className="relative w-full h-[800px] md:h-[600px]">
+    <div ref={sectionRef} className="relative w-full lg:h-[600px] md:h-[600px] sm:h-[700px] h-[700px]">
 
       <Swiper
         modules={[Autoplay, Pagination]}
@@ -127,6 +137,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
               src={src}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-black/60"></div>
           </SwiperSlide>

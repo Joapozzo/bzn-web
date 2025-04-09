@@ -1,30 +1,8 @@
 ---
-import Button from "./UI/Button";
-import AnimateCta from "../components/AnimateCta"; // asegurate del path
-import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
-
-const textoMensaje = "Hola, quiero contactarme con un asesor. ¿Te interesa?";
+// src/pages/index.astro (o donde lo uses)
+import CtaHome from "../components/CtaHome";
+import AnimateCta from "../components/AnimateCta";
 ---
 
-<section
-  class="w-full bg-[var(--black-200)] text-white py-12 px-6 flex flex-col mt-16"
-  id="cta-home"
->
-  <div
-    class="max-w-[1200px] w-full mx-auto flex flex-col gap-6 items-start justify-start px-4 sm:px-6 lg:px-8"
-    data-gsap
-  >
-    <h1 class="text-3xl md:text-5xl font-bold max-w-4xl">
-      ENCONTRÁ <span class="text-[var(--red)]">TU PRÓXIMO HOGAR</span> O INVERSIÓN
-      CON BZN URBAN MAKING
-    </h1>
-    <p class="text-lg max-w-2xl">
-      Más de 40 años de experiencia en desarrollos inmobiliarios respaldan
-      nuestro compromiso con la calidad, el diseño y la seguridad. Descubrí
-      nuestras oportunidades y sumate a quienes ya confiaron en nosotros.
-    </p>
-    <Button text="HABLAR CON UN ASESOR" onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}/>
-  </div>
-</section>
-
+<CtaHome client:load />
 <AnimateCta client:load />

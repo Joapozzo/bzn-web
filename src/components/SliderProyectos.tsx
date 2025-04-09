@@ -16,6 +16,11 @@ const SliderProyectos = () => {
   const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log("SliderProyectos renderizado");
+  }, []);
+
+
+  useEffect(() => {
     import("gsap/ScrollTrigger").then((module) => {
       const ScrollTrigger = module.default;
       gsap.registerPlugin(ScrollTrigger);
@@ -88,7 +93,8 @@ const SliderProyectos = () => {
   };
 
   return (
-    <div className="relative w-full h-[800px] md:h-[600px] lg:h-[700px] xl:h-[600px] mt-16">
+
+    <div className="relative w-full h-[800px] max-[768px]:h-[650px] max-[1199px]:h-[700px] min-[1200px]:h-[600px] mt-16">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -101,6 +107,7 @@ const SliderProyectos = () => {
             <img
               src={img}
               alt="Proyecto"
+              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -108,24 +115,25 @@ const SliderProyectos = () => {
         ))}
       </Swiper>
 
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col lg:flex-row lg:justify-between items-start w-full z-10 max-w-[1200px] mx-auto px-6 h-full">
+      <div className="absolute top-20 max-[1199px]:top-5 left-1/2 -translate-x-1/2 flex flex-col min-[1200px]:flex-row justify-between items-center min-[1200px]:items-start w-full z-10 max-w-[1200px] mx-auto px-6 text-center min-[1200px]:text-start">
+
         {/* Izquierda */}
         <div
           ref={leftRef}
-          className="text-white text-center lg:text-start max-w-[500px] self-start"
+          className="py-4 px-4 max-[1199px]:px-6 text-white flex flex-col items-center min-[1200px]:items-start w-full max-[1199px]:self-center"
         >
-          <div className="flex space-x-3 mb-4 justify-center lg:justify-start">
-            <span className="bg-[var(--red)] text-white px-4 py-1 rounded text-sm md:text-base">
+          <div className="flex space-x-3 mb-4 justify-center min-[1200px]:justify-start">
+            <span className="bg-[var(--red)] text-white px-4 py-1 rounded text-xs max-[768px]:text-sm max-[1199px]:text-base min-[1200px]:text-lg">
               PROYECTO ACTUAL
             </span>
-            <span className="bg-gray-900 text-white px-4 py-1 rounded text-sm md:text-base uppercase">
+            <span className="bg-gray-900 text-white px-4 py-1 rounded text-xs max-[768px]:text-sm max-[1199px]:text-base min-[1200px]:text-lg uppercase">
               {proyecto.tipo}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="text-2xl max-[768px]:text-3xl max-[1199px]:text-5xl min-[1200px]:text-7xl font-bold leading-tight">
             {proyecto.nombre}
           </h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl text-start">
+          <p className="mt-4 text-sm max-[768px]:text-base max-[1199px]:text-lg min-[1200px]:text-xl max-w-3xl">
             {proyecto.descripcion}
           </p>
         </div>
@@ -133,36 +141,35 @@ const SliderProyectos = () => {
         {/* Derecha */}
         <div
           ref={rightRef}
-          className="py-4 md:p-6 text-black z-10 w-full max-w-[500px] flex flex-col self-start"
+          className="py-4 px-4 max-[1199px]:px-6 text-black z-10 w-full flex flex-col items-center min-[1200px]:items-start self-center min-[1200px]:self-start"
         >
-          <div className="flex space-x-2 mb-4 bg-[var(--red)] px-4 py-2 rounded-lg justify-center items-center w-full">
-            {(["caracteristicas", "ubicacion", "planos"] as const).map(
-              (tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 relative text-sm md:text-lg uppercase ${activeTab === tab
-                    ? "font-bold text-[var(--white)]"
-                    : "font-light text-[var(--white)]"
+          <div className="flex flex-wrap gap-2 mb-4 bg-[var(--red)] px-4 py-2 rounded-lg justify-center items-center w-full">
+            {(["caracteristicas", "ubicacion", "planos"] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 relative text-xs max-[768px]:text-sm max-[1199px]:text-lg min-[1200px]:text-xl uppercase ${activeTab === tab
+                  ? "font-bold text-[var(--white)]"
+                  : "font-light text-[var(--white)]"
+                  }`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                <span
+                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[75%] h-[2px] bg-[var(--white)] transition-transform duration-300 ease-in-out ${activeTab === tab ? "scale-x-100" : "scale-x-0"
                     }`}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                  <span
-                    className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[75%] h-[2px] bg-[var(--white)] transition-transform duration-300 ease-in-out ${activeTab === tab ? "scale-x-100" : "scale-x-0"
-                      }`}
-                  />
-
-                </button>
-              )
-            )}
+                />
+              </button>
+            ))}
           </div>
 
-          <div className="text-gray-700 bg-[var(--white)] px-4 py-2 rounded-lg text-sm md:text-base max-h-80 overflow-y-auto">
+          <div className="text-gray-700 bg-[var(--white)] px-4 py-2 rounded-lg text-xs max-[768px]:text-sm max-[1199px]:text-base min-[1200px]:text-lg max-h-80 overflow-y-auto w-full">
             {tabContent[activeTab]}
           </div>
         </div>
       </div>
     </div>
+
+
   );
 };
 

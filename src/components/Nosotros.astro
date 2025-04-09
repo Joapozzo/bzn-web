@@ -6,7 +6,7 @@ import Section from "../layouts/Section";
   <div class="max-w-[1200px] mx-auto grid gap-6">
     
     <!-- Primera caja -->
-    <div class="grid md:grid-cols-2 gap-0 lg:gap-4">
+    <div class="grid md:grid-cols-2 gap-0 lg:gap-4 md:gap-4">
       <div class="bg-[#8C1D2C] text-white p-6 flex flex-col justify-center rounded-lg" data-animate>
         <h2 class="text-3xl font-bold mb-2">BZN URBAN MAKING</h2>
         <p class="text-lg">
@@ -21,7 +21,7 @@ import Section from "../layouts/Section";
     </div>
 
     <!-- Segunda caja -->
-    <div class="grid md:grid-cols-2 gap-0 lg:gap-4">
+    <div class="grid md:grid-cols-2 gap-0 lg:gap-4 md:gap-4">
       <div class="bg-cover bg-center h-full rounded-lg" style="background-image: url('/imgs/2.jpg');" data-animate></div>
       <div class="bg-[var(--red)] text-white p-6 flex items-center rounded-lg" data-animate>
         <p class="text-lg">
@@ -77,5 +77,39 @@ import Section from "../layouts/Section";
 
   </div>
 </Section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count-up");
+
+    counters.forEach((counter) => {
+      const finalValue = parseInt(counter.getAttribute("data-value") || "0");
+      const obj = { val: 0 };
+
+      ScrollTrigger.create({
+        trigger: counter,
+        start: "top 90%",
+        once: true,
+        onEnter: () => {
+          gsap.to(obj, {
+            val: finalValue,
+            duration: 2,
+            ease: "power1.out",
+            onUpdate: () => {
+              const current = Math.floor(obj.val);
+              counter.textContent = current.toLocaleString("es-AR");
+            },
+          });
+        },
+      });
+    });
+  });
+</script>
+
 
 
