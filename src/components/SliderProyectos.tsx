@@ -93,7 +93,7 @@ const SliderProyectos = () => {
   };
 
   return (
-    <div className="relative w-full h-[800px] max-[768px]:h-[650px] max-[1199px]:h-[700px] min-[1200px]:h-[600px] mt-16 overflow-x-hidden">
+    <div className="relative w-full h-[800px] max-[768px]:h-[740px] max-[1199px]:h-[700px] min-[1200px]:h-[600px] mt-16 overflow-x-hidden">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2000, disableOnInteraction: false }}

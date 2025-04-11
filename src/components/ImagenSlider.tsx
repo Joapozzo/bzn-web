@@ -119,7 +119,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative w-full lg:h-[600px] md:h-[600px] sm:h-[700px] h-[700px]">
+    <div ref={sectionRef} className="relative w-full lg:h-[600px] md:h-[600px] sm:h-[700px] h-[800px]">
 
       <Swiper
         modules={[Autoplay, Pagination]}

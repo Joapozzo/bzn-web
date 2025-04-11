@@ -5,7 +5,7 @@ interface ButtonProps {
   outline?: boolean;
   icon?: React.ReactNode;
   color?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "button" | "submit" | "reset";
 }
 

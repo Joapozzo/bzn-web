@@ -79,60 +79,91 @@ const Navbar = () => {
         />
       )}
 
-      <nav
-        className={`fixed top-2 py-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out px-6 rounded-full max-w-[1200px] mx-auto w-full
-          ${scrolled
-            ? `backdrop-blur-lg border border-white/30 py-3 px-8 ${window.innerWidth < 1024 ? "bg-[var(--red)] max-w-[600px]" : "bg-[var(--red)] max-w-[900px]"}`
-            : "bg-transparent"} 
-          ${menuOpen ? "rounded-xl" : "rounded-xl"}`}
-      >
-        <div className="flex justify-between items-center w-full mx-auto">
-          <img
-            src="/imgs/logos/logo-bzn.png"
-            alt="Logo"
-            className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo ${scrolled ? "filter invert brightness-0" : ""
-              }`}
-            onClick={navToHome}
-          />
-
-          <div className="hidden md:flex gap-4">
-            <NavLink href="#works" text="Trabajos" />
-            <NavLink href="#services" text="Servicios" />
-            <NavLink href="#about" text="Nosotros" />
-            <NavLink href="#contact" text="Contacto" />
-          </div>
-
-          <div className="hidden md:block">
-            <Button text="Saber más" icon={<Plus />} color={scrolled ? "var(--red-200)" : "var(--red)"} onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}/>
-          </div>
-
-          <button
-            className="md:hidden flex flex-col space-y-1 z-50"
-            onClick={abrirMenu}
-          >
-            <div
-              className={`w-6 h-1 bg-white transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <div
-              className={`w-6 h-1 bg-white transition-opacity ${menuOpen ? "opacity-0" : ""}`}
-            />
-            <div
-              className={`w-6 h-1 bg-white transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </button>
-        </div>
-
+      <nav className="fixed top-2 z-50 w-full transition-all duration-300 ease-in-out">
         <div
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${menuOpen ? "max-h-[300px] opacity-100 pt-4" : "max-h-0 opacity-0 pointer-events-none"}`}
+          className={`mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col rounded-xl transition-all duration-300
+      ${
+        scrolled
+          ? "max-w-[900px] backdrop-blur-lg border border-white/30 bg-[var(--red)] py-3"
+          : "max-w-[1200px] bg-transparent py-4"
+      }
+    `}
         >
-          <div className="flex flex-col items-center gap-4 py-4 px-6 sm:px-8 md:px-8 bg-[var(--red)] border-t border-white/30 rounded-b-3xl">
-            <NavLink href="#works" text="Trabajos" onClick={abrirMenu} />
-            <NavLink href="#services" text="Servicios" onClick={abrirMenu} />
-            <NavLink href="#about" text="Nosotros" onClick={abrirMenu} />
-            <NavLink href="#contact" text="Contacto" onClick={abrirMenu} />
-            <Button text="Saber más" icon={<Plus />} color="var(--red-200)" onClick={() => enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)}
+          <div className="flex justify-between items-center w-full">
+            <img
+              src="/imgs/logos/logo-bzn.png"
+              alt="Logo"
+              className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo ${
+                scrolled ? "filter invert brightness-0" : ""
+              }`}
+              onClick={navToHome}
             />
-            <div className="hidden md:block"></div>
+
+            {/* Links desktop */}
+            <div className="hidden md:flex gap-4">
+              <NavLink href="#works" text="Trabajos" />
+              <NavLink href="#services" text="Servicios" />
+              <NavLink href="#about" text="Nosotros" />
+              <NavLink href="#contact" text="Contacto" />
+            </div>
+
+            {/* Botón desktop */}
+            <div className="hidden md:block">
+              <Button
+                text="Saber más"
+                icon={<Plus />}
+                color={scrolled ? "var(--red-200)" : "var(--red)"}
+                onClick={() =>
+                  enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)
+                }
+              />
+            </div>
+
+            {/* Menú hamburguesa */}
+            <button
+              className="md:hidden flex flex-col space-y-1 z-50"
+              onClick={abrirMenu}
+            >
+              <div
+                className={`w-6 h-1 bg-white transition-transform ${
+                  menuOpen ? "rotate-45 translate-y-2" : ""
+                }`}
+              />
+              <div
+                className={`w-6 h-1 bg-white transition-opacity ${
+                  menuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <div
+                className={`w-6 h-1 bg-white transition-transform ${
+                  menuOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
+              />
+            </button>
+          </div>
+
+          {/* Menú mobile */}
+          <div
+            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+              menuOpen
+                ? "max-h-[300px] opacity-100 pt-4"
+                : "max-h-0 opacity-0 pointer-events-none"
+            }`}
+          >
+            <div className="flex flex-col items-center gap-4 py-4 px-6 sm:px-8 bg-[var(--red)] border-t border-white/30 rounded-b-3xl">
+              <NavLink href="#works" text="Trabajos" onClick={abrirMenu} />
+              <NavLink href="#services" text="Servicios" onClick={abrirMenu} />
+              <NavLink href="#about" text="Nosotros" onClick={abrirMenu} />
+              <NavLink href="#contact" text="Contacto" onClick={abrirMenu} />
+              <Button
+                text="Saber más"
+                icon={<Plus />}
+                color="var(--red-200)"
+                onClick={() =>
+                  enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)
+                }
+              />
+            </div>
           </div>
         </div>
       </nav>
