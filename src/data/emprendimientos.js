@@ -4,8 +4,12 @@ const emprendimientos = [
     nombre: "Residencias Morón",
     direccion: "Morón 3401 Bº Ampliación San Pablo",
     m2: 887.41,
-    descripcion: "Un moderno complejo residencial en una ubicación estratégica.",
-    img: null,
+    descripcion:
+      "Un moderno complejo residencial en una ubicación estratégica.",
+    img: {
+      frente: "/imgs/proyectos/moron/moron-frente.JPG",
+      dorso: "/imgs/proyectos/moron/moron-dorso.JPG",
+    },
     unidades: "12 departamentos",
   },
   {
@@ -14,7 +18,10 @@ const emprendimientos = [
     direccion: "Monseñor de Andrea 260 Bº Alto Alberdi",
     m2: 1442.68,
     descripcion: "Una combinación perfecta de confort y diseño moderno.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/miradores/miradores-frente.jpg",
+      dorso: "/imgs/proyectos/miradores/miradores-dorso.jpg",
+    },
     unidades: "23 departamentos + 2 locales",
   },
   {
@@ -23,7 +30,10 @@ const emprendimientos = [
     direccion: "San José de Calasanz 320 Bº Alberdi",
     m2: 1558.97,
     descripcion: "Un edificio de diseño innovador con todas las comodidades.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/calazans/calazans-frente.jpg",
+      dorso: "/imgs/proyectos/calazans/calazans-dorso.jpg",
+    },
     unidades: "29 departamentos + 2 locales",
   },
   {
@@ -32,7 +42,10 @@ const emprendimientos = [
     direccion: "Marcelo T. de Alvear 935 Bº Güemes",
     m2: 1655.87,
     descripcion: "Un desarrollo exclusivo en una ubicación privilegiada.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/terrazas/terrazas-frente.jpg",
+      dorso: "/imgs/proyectos/terrazas/terrazas-dorso.jpg",
+    },
     unidades: "20 departamentos",
   },
   {
@@ -41,7 +54,10 @@ const emprendimientos = [
     direccion: "9 de Julio 2493 Bº Alberdi",
     m2: 2420.7,
     descripcion: "Una torre moderna con vistas inigualables.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/aramis/aramis-frente.jpg",
+      dorso: "/imgs/proyectos/aramis/aramis-dorso.jpg",
+    },
     unidades: null,
   },
   {
@@ -50,7 +66,10 @@ const emprendimientos = [
     direccion: "9 de Julio 2485 Bº Alberdi",
     m2: 1744.58,
     descripcion: "Departamentos funcionales en un barrio con historia.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/tarragona/tarragona-frente.jpg",
+      dorso: "/imgs/proyectos/tarragona/tarragona-dorso.jpg",
+    },
     unidades: "27 departamentos + 2 locales",
   },
   {
@@ -59,7 +78,10 @@ const emprendimientos = [
     direccion: "Mariano Moreno 479 Bº Alberdi",
     m2: 5271.68,
     descripcion: "Un emprendimiento de alta calidad en Alberdi.",
-    img: null,
+    img: {
+      frente: null,
+      dorso: null,
+    },
     unidades: "77 departamentos",
   },
   {
@@ -68,7 +90,10 @@ const emprendimientos = [
     direccion: "Av. Pueyrredón 1313 Bº Observatorio",
     m2: 2420.7,
     descripcion: "Un proyecto con vistas panorámicas a la ciudad.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/plaza/plaza-frente.jpg",
+      dorso: "/imgs/proyectos/plaza/plaza-dorso.jpg",
+    },
     unidades: "36 departamentos + 2 locales",
   },
   {
@@ -77,7 +102,10 @@ const emprendimientos = [
     direccion: "9 de Julio 2987 esq. Aguirre Cámara",
     m2: 3897.78,
     descripcion: "Un complejo residencial con amplios espacios verdes.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/terranova/terranova-frente.jpg",
+      dorso: "/imgs/proyectos/terranova/terranova-dorso.jpg",
+    },
     unidades: "64 departamentos + 1 local",
   },
   {
@@ -86,7 +114,10 @@ const emprendimientos = [
     direccion: "Dumesnil 1451 Bº Providencia",
     m2: 1739.88,
     descripcion: "Un desarrollo que combina elegancia y funcionalidad.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/dusmenil/dusmenil-frente.jpg",
+      dorso: "/imgs/proyectos/dusmenil/dusmenil-dorso.jpg",
+    },
     unidades: "30 departamentos",
   },
   {
@@ -95,7 +126,10 @@ const emprendimientos = [
     direccion: "9 de Julio 3346 Bº Alto Alberdi",
     m2: 1245.45,
     descripcion: "Departamentos modernos en una excelente ubicación.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/wissen-julio/wissen-julio-frente.jpg",
+      dorso: "/imgs/proyectos/wissen-julio/wissen-julio-dorso.jpeg",
+    },
     unidades: "21 departamentos",
   },
   {
@@ -104,7 +138,10 @@ const emprendimientos = [
     direccion: "9 de Julio 1907 esq. Orgaz",
     m2: 2517.51,
     descripcion: "Un nuevo concepto en arquitectura y comodidad.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/wissen-julio-2/wissen-julio-2-frente.jpg",
+      dorso: "/imgs/proyectos/wissen-julio-2/wissen-julio-2-dorso.jpg",
+    },
     unidades: "48 departamentos",
   },
   {
@@ -113,7 +150,10 @@ const emprendimientos = [
     direccion: "Av. Pueyrredón 1253 B° Observatorio",
     m2: 1193.61,
     descripcion: "Edificio moderno con excelente ubicación y diseño.",
-    img: null,
+    img: {
+      frente: "/imgs/proyectos/wissen-pueyrredon/wissen-pueyrredon-frente.jpg",
+      dorso: "/imgs/proyectos/wissen-pueyrredon/wissen-pueyrredon-dorso.jpg",
+    },
     unidades: "15 departamentos + 1 local",
   },
 ];

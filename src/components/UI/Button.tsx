@@ -29,9 +29,16 @@ const Button = ({
           borderColor: outline ? "var(--white)" : "transparent",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "transparent";
-          e.currentTarget.style.borderColor = "var(--white)";
-          e.currentTarget.style.color = "var(--white)";
+          if (color === "var(--red)" && !outline) {
+            e.currentTarget.style.backgroundColor = "transparent"
+            e.currentTarget.style.borderColor = "#a30000";
+            e.currentTarget.style.color = "var(--red)";
+          } else {
+            // Comportamiento original para otros colores
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.borderColor = "var(--white)";
+            e.currentTarget.style.color = "var(--white)";
+          }
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = outline ? "transparent" : color;

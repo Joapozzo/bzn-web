@@ -3,27 +3,61 @@ import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>BZN Urban Making</title>
-	</head>
-	<body > 
-		<slot />
-		<script type="module" src="/src/scripts/count-up.ts"></script>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título SEO optimizado -->
+    <title>BZN Urban Making | Desarrollista Inmobiliaria en Córdoba</title>
+
+    <!-- Descripción SEO -->
+    <meta name="description" content="BZN Urban Making es una desarrollista con más de 40 años de trayectoria en Córdoba. Ejecutamos, proyectamos y comercializamos edificios de alta gama que potencian la inversión inmobiliaria." />
+
+    <!-- Palabras clave -->
+    <meta name="keywords" content="BZN, desarrollista, desarrollos inmobiliarios, Córdoba, edificios, departamentos, inversión, arquitectura, bienes raíces, Miguel Ángel Bazán" />
+
+    <!-- Autor -->
+    <meta name="author" content="BZN Urban Making" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.bznurbanmaking.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BZN Urban Making | Desarrollista Inmobiliaria en Córdoba" />
+    <meta property="og:description" content="Somos una desarrollista con más de 40 años de experiencia. Invertí en bienes raíces con proyectos de calidad y visión a futuro." />
+    <meta property="og:image" content="https://www.bznurbanmaking.com/imgs/og-image.jpg" />
+    <meta property="og:url" content="https://www.bznurbanmaking.com/" />
+    <meta property="og:site_name" content="BZN Urban Making" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BZN Urban Making | Desarrollista Inmobiliaria en Córdoba" />
+    <meta name="twitter:description" content="40 años desarrollando proyectos inmobiliarios de alta gama en Córdoba." />
+    <meta name="twitter:image" content="https://www.bznurbanmaking.com/imgs/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Astro generator -->
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+    <script type="module" src="/src/scripts/count-up.ts"></script>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

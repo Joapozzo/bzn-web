@@ -26,7 +26,7 @@ const FlipCardsContainer = () => {
       containerRef.current?.scrollIntoView({ behavior: 'smooth' });
       shouldScrollRef.current = false;
     }
-  }, [limitView]); // cuando cambia el limitView, se hace el scroll si corresponde
+  }, [limitView]);
 
   return (
     <section className="w-full flex flex-col gap-10 items-center justify-center">
