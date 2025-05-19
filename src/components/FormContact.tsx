@@ -9,7 +9,7 @@ const FormContact = () => {
         <form
             method="POST"
             className="flex flex-col gap-3 w-full max-w-xs"
-            action="https://formsubmit.co/6a1fcbd37d4b014fff1eb11a04f701d0"
+            action="https://formsubmit.co/info@bznurbanmaking.com.ar"
         >
             <h3 className="font-bold text-lg text-left md:text-left">CONTACTO</h3>
 
@@ -34,14 +34,11 @@ const FormContact = () => {
             <Button type="submit" text="ENVIAR" color="var(--red)" />
 
             <input type="hidden" name="_template" value="table" />
-            <input
-                type="hidden"
-                name="_subject"
-                value="📩 Nuevo mensaje desde GRUPO BZN"
-            />
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde Grupo BZN Web" />
             <input type="hidden" name="_from" value="Grupo BZN" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value={URL} />
+            <input type="hidden" name="_replyto" value="true" />
             <input
                 type="hidden"
                 name="_autoresponse"

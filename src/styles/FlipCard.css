@@ -1,110 +1,272 @@
+/* FlipCard.css - Con animación ultra moderna y llamativa */
+
 /* Contenedor principal */
 .flip-card {
     width: 300px;
     height: 400px;
-    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+    perspective: 1500px;
     
     @media (max-width: 1059px) {
         width: 400px;
         height: 400px;
-        perspective: 1000px;
     }
 
     @media (max-width: 768px) {
         width: 100%;
         height: 400px;
-        perspective: 1000px;
     }
 }
 
-/* Contenedor interno que rota */
-.flip-card-inner {
+.flip-card-container {
     width: 100%;
     height: 100%;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-    backface-visibility: hidden; /* SOLUCIÓN */
+    transition: transform 0.3s ease;
 }
 
-/* Caras de la tarjeta */
-.flip-card-front,
-.flip-card-back {
+.flip-card:hover .flip-card-container {
+    transform: translateY(-8px);
+}
+
+/* Estilos de las caras */
+.card-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Animación principal - Tipo "Cubo giratorio" */
+.front-wrapper, .back-wrapper {
+    transition: all 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden; /* Para Safari */
 }
 
-/* Efecto de giro al pasar el mouse */
-.flip-card:hover .flip-card-inner {
+.front-wrapper {
+    z-index: 2;
+    transform: rotateY(0);
+}
+
+.back-wrapper {
+    z-index: 1;
+    transform: rotateY(-180deg);
+}
+
+/* La animación ocurre solo en el eje Y, evitando problemas de texto invertido */
+.flip-card.is-flipped .front-wrapper {
     transform: rotateY(180deg);
 }
 
-/* Caras de la tarjeta */
-.flip-card-front,
-.flip-card-back {
+.flip-card.is-flipped .back-wrapper {
+    transform: rotateY(0);
+    z-index: 2;
+}
+
+/* Estilos del contenido */
+.card-front, .card-back {
     width: 100%;
     height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 20px;
     color: white;
     font-size: 20px;
-
-    h2 {
-        font-size: 26px;
-        font-weight: 700;
-    }
-}
-
-/* Estilo para la parte frontal */
-.flip-card-front {
-    background-image: url('imgs/1.jpg');
     background-size: cover;
     background-position: center;
+    position: relative;
 }
 
-/* Estilo para la parte trasera */
-.flip-card-back {
-    background-image: url('imgs/2.jpg');
-    background-size: cover;
-    background-position: center;
-    transform: rotateY(180deg);
+/* Efecto de paralaje en la imagen de fondo */
+.card-front {
+    background-size: 110% 110%;
+    transition: background-size 0.8s ease;
+}
+
+.flip-card:hover .card-front {
+    background-size: 120% 120%;
+}
+
+/* Estilos del título */
+.card-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 8px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.card-category {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.info-wrapper {
+    transform: translateY(5px);
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card:hover .info-wrapper {
+    transform: translateY(0);
+}
+
+/* Estilos de la parte trasera */
+.card-back {
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
-
-    ul {
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    ul > li { 
-        list-style: none;
-        font-size: 18px;
-    }
+    gap: 15px;
 }
 
-/* Asegurar que el overlay quede atrás */
+.card-description {
+    margin-top: 0;
+    font-size: 18px;
+    line-height: 1.4;
+    max-width: 100%;
+}
+
+.card-details {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.card-details > li { 
+    list-style: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.card-details > li:hover {
+    transform: translateX(5px);
+}
+
+/* Overlay con degradado más moderno */
 .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    border-radius: 10px;
-    z-index: 1; /* Mantenerlo por debajo del texto */
+    background: linear-gradient(
+        to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.7) 20%, 
+        rgba(0, 0, 0, 0.4) 40%, 
+        rgba(0, 0, 0, 0.1) 60%, 
+        rgba(0, 0, 0, 0) 80%
+    );
+    z-index: 1;
 }
 
-/* Asegurar que el overlay no tape el contenido */
-.flip-card-front h2,
-.flip-card-front p,
-.flip-card-back p,
-.flip-card-back ul {
-    position: relative; /* Para que queden por encima del overlay */
-    z-index: 2; /* Asegurar que estén sobre la sombra */
+.card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+/* Efecto de brillo */
+.shine-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    z-index: 2;
+}
+
+.flip-card:hover .shine-effect {
+    opacity: 1;
+    transform: rotate(30deg) translate(-30%, 0);
+}
+
+/* Efecto de presión al hacer clic */
+.flip-card:active .flip-card-container {
+    transform: scale(0.97) translateY(-5px);
+    transition: transform 0.1s ease;
+}
+
+/* Efecto de flash */
+.flip-card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    opacity: 0;
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.flip-card:active:after {
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Animación para los detalles en el lado trasero */
+.card-details > li {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.flip-card.is-flipped .card-details > li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Aplica retraso a cada elemento para una entrada escalonada */
+.flip-card.is-flipped .card-details > li:nth-child(1) { transition-delay: 0.1s; }
+.flip-card.is-flipped .card-details > li:nth-child(2) { transition-delay: 0.2s; }
+.flip-card.is-flipped .card-details > li:nth-child(3) { transition-delay: 0.3s; }
+.flip-card.is-flipped .card-details > li:nth-child(4) { transition-delay: 0.4s; }
+
+/* Aseguramos que el flip no sea problemático en móviles */
+@media (max-width: 768px) {
+    .front-wrapper, .back-wrapper {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* Mejoramos la visibilidad en móviles */
+    .overlay {
+        background: linear-gradient(
+            to top, 
+            rgba(0, 0, 0, 0.95) 0%, 
+            rgba(0, 0, 0, 0.7) 30%, 
+            rgba(0, 0, 0, 0.4) 60%, 
+            rgba(0, 0, 0, 0.1) 80%
+        );
+    }
 }

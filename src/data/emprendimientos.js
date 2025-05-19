@@ -79,8 +79,8 @@ const emprendimientos = [
     m2: 5271.68,
     descripcion: "Un emprendimiento de alta calidad en Alberdi.",
     img: {
-      frente: null,
-      dorso: null,
+      frente: "/imgs/proyectos/endeavor/endeavor-frente.jpg",
+      dorso: "/imgs/proyectos/endeavor/endeavor-dorso.jpg",
     },
     unidades: "77 departamentos",
   },

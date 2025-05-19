@@ -164,7 +164,7 @@ const SliderProyectos = () => {
             )}
           </div>
 
-          <div className="text-gray-700 bg-[var(--white)] px-4 py-2 rounded-lg text-xs max-[768px]:text-sm max-[1199px]:text-base min-[1200px]:text-lg max-h-80 overflow-y-auto w-full">
+          <div className="text-start text-gray-700 bg-[var(--white)] px-4 py-2 rounded-lg text-xs max-[768px]:text-sm max-[1199px]:text-base min-[1200px]:text-lg max-h-80 overflow-y-auto w-full">
             {tabContent[activeTab]}
           </div>
         </div>
