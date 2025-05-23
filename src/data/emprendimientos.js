@@ -156,6 +156,32 @@ const emprendimientos = [
     },
     unidades: "15 departamentos + 1 local",
   },
+  {
+    tipo: "Edificio",
+    nombre: "Wissen Mariano Moreno (Mutual M.A.S.)",
+    direccion: "Mariano Moreno 379 B° Alberdi",
+    m2: 1390.45,
+    descripcion:
+      "Edificio moderno en el corazón de Alberdi, impulsado por la Mutual M.A.S.",
+    img: {
+      frente: "/imgs/proyectos/wissen-mariano/wissen-mariano-frente.jpg",
+      dorso: "/imgs/proyectos/wissen-mariano/wissen-mariano-dorso.jpg",
+    },
+    unidades: "24 departamentos + 1 local comercial",
+  },
+  {
+    tipo: "Edificio",
+    nombre: "Terrazas IV",
+    direccion: "La Rioja 1207 esq. Coronel Olmedo B° Alberdi",
+    m2: 1763.52,
+    descripcion:
+      "Cuarta etapa del desarrollo Terrazas con diseño contemporáneo y espacios comerciales.",
+    img: {
+      frente: "/imgs/proyectos/terrazas-iv/terrazas-iv-frente.jpg",
+      dorso: "/imgs/proyectos/terrazas-iv/terrazas-iv-dorso.jpg",
+    },
+    unidades: "28 departamentos + 3 locales comerciales",
+  },
 ];
 
 export default emprendimientos;

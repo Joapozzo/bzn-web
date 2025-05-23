@@ -173,7 +173,7 @@
 
 .card-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -269,4 +269,15 @@
             rgba(0, 0, 0, 0.1) 80%
         );
     }
+}
+
+/* Agregá esto al final de tu CSS */
+.back-wrapper .overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.1) 90%
+  );
 }
