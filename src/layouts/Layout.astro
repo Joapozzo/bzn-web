@@ -1,29 +1,18 @@
 ---
 import '../styles/global.css';
 ---
-
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título SEO optimizado -->
     <title>BZN Urban Making | Desarrollista Inmobiliaria en Córdoba</title>
 
-    <!-- Descripción SEO -->
     <meta name="description" content="BZN Urban Making es una desarrollista con más de 40 años de trayectoria en Córdoba. Ejecutamos, proyectamos y comercializamos edificios de alta gama que potencian la inversión inmobiliaria." />
-
-    <!-- Palabras clave -->
     <meta name="keywords" content="BZN, desarrollista, desarrollos inmobiliarios, Córdoba, edificios, departamentos, inversión, arquitectura, bienes raíces, Miguel Ángel Bazán" />
-
-    <!-- Autor -->
     <meta name="author" content="BZN Urban Making" />
-
-    <!-- Robots -->
     <meta name="robots" content="index, follow" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://www.bznurbanmaking.com/" />
 
     <!-- Open Graph -->
@@ -41,14 +30,47 @@ import '../styles/global.css';
     <meta name="twitter:description" content="40 años desarrollando proyectos inmobiliarios de alta gama en Córdoba." />
     <meta name="twitter:image" content="https://www.bznurbanmaking.com/imgs/og-image.jpg" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Astro generator -->
+    <!-- Accesibilidad y rendimiento -->
+    <!-- <meta name="theme-color" content="#08202E" />
+    <meta name="color-scheme" content="dark light" /> -->
+    <meta name="application-name" content="BZN Urban Making" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/public/imgs/logos/logo_reducido.webp" />
+
+    <!-- Datos estructurados con Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "RealEstateAgent",
+        "name": "BZN Urban Making",
+        "url": "https://www.bznurbanmaking.com",
+        "logo": "https://www.bznurbanmaking.com/favicon.svg",
+        "description": "Desarrollista inmobiliaria con más de 40 años de trayectoria en Córdoba. Edificios de alta gama para inversión.",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Córdoba, Argentina"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Miguel Ángel Bazán"
+        }
+      }
+    </script>
   </head>
   <body>
-    <slot />
+    <main>
+      <section aria-label="Presentación de BZN Urban Making">
+        <h1 style="display: none;">BZN Urban Making - Desarrollista inmobiliaria en Córdoba</h1>
+        <p style="display: none;">
+          Más de 40 años de experiencia en ejecución, comercialización y proyección de edificios premium para inversión.
+        </p>
+      </section>
+
+      <slot />
+    </main>
+
     <script type="module" src="/src/scripts/count-up.ts"></script>
   </body>
 </html>
