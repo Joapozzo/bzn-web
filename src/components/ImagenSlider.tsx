@@ -14,12 +14,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
-const images = [
-  "/imgs/1.jpg",
-  "/imgs/2.jpg",
-  "/imgs/3.jpg",
-];
-
 interface ImageSliderProps {
   images: string[];
 }

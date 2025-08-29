@@ -5,8 +5,22 @@ import Button from "./UI/Button";
 import Plus from "../../public/imgs/icons/Plus";
 import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
-const Navbar = () => {
-  const textoMensaje = "Hola, quiero saber más sobre tu empresa y tus proyectos. ¿Te interesa?";
+interface NavbarProps {
+  navLinks?: string[];
+  isWissenPage?: boolean;
+  homeUrl?: string;
+  wissenUrl?: string;
+}
+
+const Navbar = ({ 
+  navLinks = ["Trabajos", "Servicios", "Nosotros", "Contacto"],
+  isWissenPage = false,
+  homeUrl = "/",
+  wissenUrl = "/wissen-df"
+}: NavbarProps) => {
+  const textoMensaje = isWissenPage 
+    ? "Hola, quiero más información sobre Wissen DF." 
+    : "Hola, quiero saber más sobre tu empresa y tus proyectos. ¿Te interesa?";
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +31,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (menuOpen) {
-      setScrolled(true); // Cuando el menú está abierto, activar el scroll
+      setScrolled(true);
     } else {
       const handleScroll = () => {
         setScrolled(window.scrollY > 50);
@@ -29,7 +43,11 @@ const Navbar = () => {
   }, [menuOpen]);
 
   const navToHome = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (isWissenPage) {
+      window.location.href = homeUrl;
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   // Animación con GSAP
@@ -61,12 +79,33 @@ const Navbar = () => {
       .to("nav", {
         y: 0,
         duration: 0.4,
-        ease: "bounce.out",  // Efecto de rebote sutil
+        ease: "bounce.out",
       });
   }, []);
 
   const handleOverlayClick = () => {
     setMenuOpen(false);
+  };
+
+  // Función para generar href basado en el contexto
+  const getNavHref = (link: string) => {
+    if (isWissenPage) {
+      const linkMap: { [key: string]: string } = {
+        "Ubicación": "#ubicacion",
+        "Características": "#caracteristicas", 
+        "Tipologías": "#tipologias",
+        "Contacto": "#contacto"
+      };
+      return linkMap[link] || `#${link.toLowerCase()}`;
+    } else {
+      const linkMap: { [key: string]: string } = {
+        "Trabajos": "#works",
+        "Servicios": "#services", 
+        "Nosotros": "#about",
+        "Contacto": "#contact"
+      };
+      return linkMap[link] || `#${link.toLowerCase()}`;
+    }
   };
 
   return (
@@ -84,33 +123,49 @@ const Navbar = () => {
           className={`mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col rounded-xl transition-all duration-300
       ${
         scrolled
-          ? "max-w-[900px] backdrop-blur-lg border border-white/30 bg-[var(--red)] py-3"
+          ? "max-w-[950px] backdrop-blur-lg border border-white/30 bg-[var(--red)] py-3"
           : "max-w-[1200px] bg-transparent py-4"
       }
     `}
         >
           <div className="flex justify-between items-center w-full">
+            {/* Logo */}
             <img
               src="/imgs/logos/logo-bzn.png"
-              alt="Logo"
-              className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo ${
+              alt="Logo BZN"
+              className={`w-32 sm:w-36 md:w-48 transition-all duration-300 ease-in-out logo cursor-pointer ${
                 scrolled ? "filter invert brightness-0" : ""
               }`}
               onClick={navToHome}
             />
 
             {/* Links desktop */}
-            <div className="hidden md:flex gap-4">
-              <NavLink href="#works" text="Trabajos" />
-              <NavLink href="#services" text="Servicios" />
-              <NavLink href="#about" text="Nosotros" />
-              <NavLink href="#contact" text="Contacto" />
+            <div className="hidden md:flex gap-4 items-center">
+              {navLinks.map((link, index) => (
+                <NavLink 
+                  key={index}
+                  href={getNavHref(link)} 
+                  text={link} 
+                />
+              ))}
+              
+              {isWissenPage ? (
+                <NavLink 
+                  href={homeUrl} 
+                  text="Inicio" 
+                />
+              ) : (
+                <NavLink 
+                  href={wissenUrl} 
+                  text="Wissen DF" 
+                />
+              )}
             </div>
 
             {/* Botón desktop */}
             <div className="hidden md:block">
               <Button
-                text="Saber más"
+                text={isWissenPage ? "Más info" : "Saber más"}
                 icon={<Plus />}
                 color={scrolled ? "var(--red-200)" : "var(--red)"}
                 onClick={() =>
@@ -123,6 +178,7 @@ const Navbar = () => {
             <button
               className="md:hidden flex flex-col space-y-1 z-50"
               onClick={abrirMenu}
+              aria-label="Toggle menu"
             >
               <div
                 className={`w-6 h-1 bg-white transition-transform ${
@@ -146,22 +202,43 @@ const Navbar = () => {
           <div
             className={`transition-all duration-300 ease-in-out overflow-hidden ${
               menuOpen
-                ? "max-h-[300px] opacity-100 pt-4"
+                ? "max-h-[400px] opacity-100 pt-4"
                 : "max-h-0 opacity-0 pointer-events-none"
             }`}
           >
             <div className="flex flex-col items-center gap-4 py-4 px-6 sm:px-8 bg-[var(--red)] border-t border-white/30 rounded-b-3xl">
-              <NavLink href="#works" text="Trabajos" onClick={abrirMenu} />
-              <NavLink href="#services" text="Servicios" onClick={abrirMenu} />
-              <NavLink href="#about" text="Nosotros" onClick={abrirMenu} />
-              <NavLink href="#contact" text="Contacto" onClick={abrirMenu} />
+              {navLinks.map((link, index) => (
+                <NavLink 
+                  key={index}
+                  href={getNavHref(link)} 
+                  text={link} 
+                  onClick={abrirMenu} 
+                />
+              ))}
+              
+              {/* Link para cambiar de página en mobile */}
+              {isWissenPage ? (
+                <NavLink 
+                  href={homeUrl} 
+                  text="Volver al Inicio" 
+                  onClick={abrirMenu}
+                />
+              ) : (
+                <NavLink 
+                  href={wissenUrl} 
+                  text="Ver Wissen DF" 
+                  onClick={abrirMenu}
+                />
+              )}
+              
               <Button
-                text="Saber más"
+                text={isWissenPage ? "Más info" : "Saber más"}
                 icon={<Plus />}
                 color="var(--red-200)"
-                onClick={() =>
-                  enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO)
-                }
+                onClick={() => {
+                  enviarMensajeWhatsApp(textoMensaje, CONTACTO_TELEFONO);
+                  abrirMenu();
+                }}
               />
             </div>
           </div>

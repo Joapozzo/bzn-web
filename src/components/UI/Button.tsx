@@ -18,11 +18,11 @@ const Button = ({
   type = "button",
 }: ButtonProps) => {
   return (
-    <div className="w-full md:w-auto">
+    <div className="md:w-auto">
       <button
         type={type}
         onClick={onClick}
-        className="w-full text-center flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium uppercase transition-all duration-300 border"
+        className=" text-center flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium uppercase transition-all duration-300 border"
         style={{
           backgroundColor: outline ? "transparent" : color,
           color: outline ? "var(--white)" : "var(--white)",

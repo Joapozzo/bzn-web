@@ -27,7 +27,7 @@ const emprendimientosActuales = [
     planos: [
       { nombre: "Dpto A.pdf", url: "/pdfs/wissen/Dpto A.pdf" },
       { nombre: "Dpto B.pdf", url: "/pdfs/wissen/Dpto B.pdf" },
-      { nombre: "Dpto C.pdf", url: "/pdfs/wissen/Dpto C.pdf" },
+      // { nombre: "Dpto C.pdf", url: "/pdfs/wissen/Dpto C.pdf" },
       { nombre: "Dpto D.pdf", url: "/pdfs/wissen/Dpto D.pdf" },
       { nombre: "Dpto E.pdf", url: "/pdfs/wissen/Dpto E.pdf" },
       { nombre: "Dpto F.pdf", url: "/pdfs/wissen/Dpto F.pdf" },
