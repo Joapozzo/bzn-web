@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, MessageCircle, Home, Bath, Maximize, Square } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown, ChevronUp, MessageCircle, Home, Bath, Maximize, Square, Car, Store, Shield, Zap, MapPin, TrendingUp, Users, Building } from 'lucide-react';
 
 const WissenTipologiasSection = () => {
     const [selectedTipologia, setSelectedTipologia] = useState(null);
 
     const tipologias = [
-        { tipo: "A", supPropia: 42.69, supBalcon: 1.25, supComun: 5.15, supTotal: 49.09, dormitorios: 1, banos: 1, disponibles: 4 },
-        { tipo: "B", supPropia: 40.77, supBalcon: 1.25, supComun: 4.54, supTotal: 46.56, dormitorios: 1, banos: 1, disponibles: 8 },
-        { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 6 },
-        { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 5 },
-        { tipo: "E", supPropia: 43.11, supBalcon: 1.25, supComun: 5.19, supTotal: 49.55, dormitorios: 1, banos: 1, disponibles: 3 },
-        { tipo: "F", supPropia: 40.87, supBalcon: 1.25, supComun: 4.93, supTotal: 47.05, dormitorios: 1, banos: 1, disponibles: 6 },
-        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 3, banos: 2, disponibles: 1 }
+        { tipo: "A", supPropia: 42.69, supBalcon: 1.25, supComun: 5.15, supTotal: 49.09, dormitorios: 1, banos: 1, disponibles: 1 },
+        { tipo: "B", supPropia: 40.77, supBalcon: 1.25, supComun: 4.54, supTotal: 46.56, dormitorios: 1, banos: 1, disponibles: 1 },
+        { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 1 },
+        { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 1 },
+        { tipo: "E", supPropia: 43.11, supBalcon: 1.25, supComun: 5.19, supTotal: 49.55, dormitorios: 1, banos: 1, disponibles: 2 },
+        { tipo: "F", supPropia: 40.87, supBalcon: 1.25, supComun: 4.93, supTotal: 47.05, dormitorios: 1, banos: 1, disponibles: 2 },
+        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 3, banos: 2, disponibles: 4 }
     ];
 
     const getAvailabilityColor = (available) => {
@@ -68,8 +68,8 @@ const WissenTipologiasSection = () => {
                         <div
                             key={index}
                             className={`group relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-500 overflow-hidden ${selectedTipologia === index
-                                    ? 'border-red-500 shadow-2xl scale-[1.02]'
-                                    : 'border-gray-200 hover:border-gray-300 hover:shadow-xl'
+                                ? 'border-red-500 shadow-2xl scale-[1.02]'
+                                : 'border-gray-200 hover:border-gray-300 hover:shadow-xl'
                                 }`}
                         >
                             {/* Availability Badge */}
@@ -230,8 +230,155 @@ const WissenTipologiasSection = () => {
                     ))}
                 </div>
 
+                <div className="mt-16 mb-16">
+                    <div className="text-center mb-8">
+                        <h3 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+                            ESPACIOS{" "}
+                            <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+                                ADICIONALES
+                            </span>
+                        </h3>
+                        <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mb-6"></div>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Completá tu inversión con cocheras seguras y local comercial de alta rentabilidad
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                        {/* Cocheras */}
+                        <div
+                            className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                            style={{ '--red': '#99192B' }}
+                        >
+                            <div
+                                className="p-6 text-white relative overflow-hidden"
+                                style={{ background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)' }}
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                                <div className="relative z-10 flex items-center gap-4">
+                                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <Car className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-2xl font-black">COCHERAS</h4>
+                                        <p className="opacity-90">Espacios seguros para tu vehículo</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-gray-600 font-medium">Disponibilidad</span>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                        <span className="font-bold text-green-600 text-lg">5 Disponibles</span>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3 mb-6">
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <Shield className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Seguridad 24/7</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <Zap className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Portón automático</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <MapPin className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Ubicación privilegiada</span>
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={() => sendWhatsApp("Hola, me interesa una cochera en WISSEN DF. ¿Podrían contactarme?")}
+                                    className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)',
+                                        boxShadow: '0 4px 15px rgba(153, 25, 43, 0.3)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.background = 'linear-gradient(135deg, #EB484E 0%, #99192B 100%)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.target.style.background = 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)';
+                                    }}
+                                >
+                                    <MessageCircle className="w-5 h-5" />
+                                    <span>CONSULTAR COCHERA</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Local */}
+                        <div
+                            className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                            style={{ '--red': '#99192B' }}
+                        >
+                            <div
+                                className="p-6 text-white relative overflow-hidden"
+                                style={{ background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)' }}
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                                <div className="relative z-10 flex items-center gap-4">
+                                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <Store className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-2xl font-black">LOCAL COMERCIAL</h4>
+                                        <p className="opacity-90">Oportunidad de inversión</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-gray-600 font-medium">Disponibilidad</span>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
+                                        <span className="font-bold text-yellow-600 text-lg">1 Disponible</span>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3 mb-6">
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <TrendingUp className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Alta rentabilidad</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <Users className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Zona de alto tránsito</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                                        <Building className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <span>Planta baja</span>
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={() => sendWhatsApp("Hola, me interesa el local comercial en WISSEN DF. ¿Podrían contactarme?")}
+                                    className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)',
+                                        boxShadow: '0 4px 15px rgba(153, 25, 43, 0.3)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.background = 'linear-gradient(135deg, #EB484E 0%, #99192B 100%)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.target.style.background = 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)';
+                                    }}
+                                >
+                                    <MessageCircle className="w-5 h-5" />
+                                    <span>CONSULTAR LOCAL</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Bottom CTA */}
-                <div className="mt-16 text-center">
+                {/* <div className="mt-16 text-center">
                     <div className="inline-block bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 max-w-lg mx-auto">
                         <div className="text-white mb-6">
                             <h3 className="text-2xl font-bold mb-2">¿Necesitás más información?</h3>
@@ -245,7 +392,7 @@ const WissenTipologiasSection = () => {
                             <span>CONTACTAR ASESOR</span>
                         </button>
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     );
