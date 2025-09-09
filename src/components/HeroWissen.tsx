@@ -9,7 +9,7 @@ const HeroWissen = () => {
         <section
             style={{
                 height: "100vh",
-                background: `linear-gradient(rgba(26, 25, 25, 0.7), rgba(153, 25, 43, 0.3)), url('/imgs/wissen/3.jpg')`,
+                background: `linear-gradient(rgba(26, 25, 25, 0.7), rgba(153, 25, 43, 0.3)), url('/imgs/wissen/wissen-hero.jpg')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 display: "flex",
@@ -75,7 +75,7 @@ const HeroWissen = () => {
                     }}
                 >
                     Un nuevo concepto de vivienda en el corazón de{" "}
-                    <span style={{ fontWeight: "600", color: colors.redLight }}>
+                    <span style={{ fontWeight: "800", color: colors.white }}>
                         Córdoba
                     </span>
                 </p>

@@ -53,13 +53,13 @@ const FinanciamientoWissen = () => {
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
                 La forma más accesible de acceder a tu propiedad.
                 <br />
-                <span className="text-red-300 font-semibold">
+                {/* <span className="text-red-300 font-semibold">
                   entrega inicial + cuotas flexibles
-                </span>
+                </span> */}
               </p>
 
               {/* Features rápidas */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {/* <div className="flex flex-wrap justify-center gap-4 mb-8">
                 {[
                   "Sin interés por pago adelantado",
                   "Cuotas fijas en pesos",
@@ -74,7 +74,7 @@ const FinanciamientoWissen = () => {
                     {feature}
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

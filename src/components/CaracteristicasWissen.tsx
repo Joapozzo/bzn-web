@@ -7,10 +7,16 @@ const WissenFeaturesSection = () => {
 
     // Datos del proyecto
     const projectImages = [
-        "/imgs/wissen/1.jpg",
-        "/imgs/wissen/3.jpg",
-        "/imgs/wissen/5.jpg",
-        "/imgs/wissen/7.jpg"
+        "/imgs/wissen/galeria/1.jpg",
+        "/imgs/wissen/galeria/2.jpg",
+        "/imgs/wissen/galeria/3.jpg",
+        "/imgs/wissen/galeria/4.jpg",
+        "/imgs/wissen/galeria/5.jpg",
+        "/imgs/wissen/galeria/6.jpg",
+        "/imgs/wissen/galeria/7.jpg",
+        "/imgs/wissen/galeria/8.jpg",
+        "/imgs/wissen/galeria/9.jpg",
+        "/imgs/wissen/galeria/10.jpg",
     ];
 
     const characteristics = [
@@ -91,8 +97,8 @@ const WissenFeaturesSection = () => {
                                     <div
                                         key={index}
                                         className={`absolute inset-0 transition-all duration-700 ease-in-out ${index === currentSlide
-                                                ? 'opacity-100 scale-100'
-                                                : 'opacity-0 scale-105'
+                                            ? 'opacity-100 scale-100'
+                                            : 'opacity-0 scale-105'
                                             }`}
                                     >
                                         <img
@@ -136,8 +142,8 @@ const WissenFeaturesSection = () => {
                                         key={index}
                                         onClick={() => setCurrentSlide(index)}
                                         className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                                                ? 'bg-red-500 scale-125'
-                                                : 'bg-white/50 hover:bg-white/80'
+                                            ? 'bg-red-500 scale-125'
+                                            : 'bg-white/50 hover:bg-white/80'
                                             }`}
                                     />
                                 ))}
