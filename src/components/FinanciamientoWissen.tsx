@@ -53,9 +53,9 @@ const FinanciamientoWissen = () => {
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
                 La forma más accesible de acceder a tu propiedad.
                 <br />
-                {/* <span className="text-red-300 font-semibold">
-                  entrega inicial + cuotas flexibles
-                </span> */}
+                <span className="text-red-300 font-semibold">
+                  Plan inversor, descuento por pago de contado.
+                </span>
               </p>
 
               {/* Features rápidas */}

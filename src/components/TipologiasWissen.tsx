@@ -21,8 +21,8 @@ const WissenTipologiasSection = () => {
     };
 
     const getAvailabilityText = (available) => {
-        if (available > 3) return 'Disponible';
-        if (available > 1) return 'Pocas unidades';
+        if (available > 1) return 'Únidades disponibles';
+        if (available === 1) return 'Únidad disponible';
         return 'Últimas unidades';
     };
 
@@ -73,7 +73,7 @@ const WissenTipologiasSection = () => {
                                 }`}
                         >
                             {/* Availability Badge */}
-                            <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-white text-sm font-bold ${getAvailabilityColor(tipologia.disponibles)}`}>
+                            <div className={`shadow-lg absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-white text-sm font-bold ${getAvailabilityColor(tipologia.disponibles)}`}>
                                 {tipologia.disponibles} {getAvailabilityText(tipologia.disponibles)}
                             </div>
 
