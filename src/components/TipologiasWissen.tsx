@@ -27,7 +27,7 @@ const WissenTipologiasSection = () => {
         { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "E", supPropia: 43.11, supBalcon: 1.25, supComun: 5.19, supTotal: 49.55, dormitorios: 1, banos: 1, disponibles: 2 },
         { tipo: "F", supPropia: 40.87, supBalcon: 1.25, supComun: 4.93, supTotal: 47.05, dormitorios: 1, banos: 1, disponibles: 2 },
-        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 3, banos: 2, disponibles: 4 }
+        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 1, banos: 1, disponibles: 4 }
     ];
 
     // Animaciones en scroll
@@ -76,7 +76,7 @@ const WissenTipologiasSection = () => {
             'D': '/imgs/wissen/tipologias/D.png',
             'E': '/imgs/wissen/tipologias/E.png',
             'F': '/imgs/wissen/tipologias/F.png',
-            'G': '/imgs/wissen/tipologias/Patio.png'
+            'G': '/imgs/wissen/tipologias/G.png'
         };
         return imageMap[tipo] || `/imgs/wissen/tipologias/${tipo}.png`;
     };
