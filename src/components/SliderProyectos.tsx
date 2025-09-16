@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import gsap from "gsap";
 import emprendimientosActuales from "../data/emprendimientosActuales";
 import Pdf from "../../public/imgs/icons/Pdf";
+import Button from "./UI/Button";
 
 const SliderProyectos = () => {
   const proyecto = emprendimientosActuales[0];
@@ -19,12 +20,12 @@ const SliderProyectos = () => {
   // Generar array de imágenes de obra excluyendo las que no existen
   const obrasImages: string[] = Array.from({ length: 52 }, (_, i) => {
     const imageNumber = i + 1;
-    
+
     // Excluir imágenes que no existen
     if (imageNumber === 19 || imageNumber === 26) {
       return null;
     }
-    
+
     // La imagen 52 es jpeg, no jpg
     const extension = imageNumber === 52 ? 'jpeg' : 'jpg';
     return `/imgs/wissen/obras/${imageNumber}.${extension}`;
@@ -140,7 +141,7 @@ const SliderProyectos = () => {
   };
 
   return (
-    <div className="relative w-full h-[800px] max-[800px]:h-[740px] max-[1199px]:h-[700px] min-[1200px]:h-[600px] mt-16 overflow-x-hidden">
+    <div className="relative w-full h-[800px] max-[800px]:h-[770px] max-[1199px]:h-[700px] min-[1200px]:h-[600px] mt-16 overflow-x-hidden">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -181,6 +182,9 @@ const SliderProyectos = () => {
           <p className="mt-4 text-sm max-[768px]:text-base max-[1199px]:text-lg min-[1200px]:text-xl max-w-3xl">
             {proyecto.descripcion}
           </p>
+          <div className="mt-3 w-full flex md:justify-start justify-center">
+            <Button text="Ver más" />
+          </div>
         </div>
 
         {/* Derecha */}

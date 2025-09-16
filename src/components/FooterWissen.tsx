@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapPin, Building, Phone, Instagram, Facebook, MessageCircle, Award } from 'lucide-react';
+import { MapPin, Building, Instagram, Facebook, MessageCircle, Award } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const WissenFooter = () => {
   const sendWhatsApp = () => {
@@ -39,7 +40,7 @@ const WissenFooter = () => {
                   <span className="text-sm">33 Departamentos • 8 Cocheras • Plaza Interior</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-red-500 flex-shrink-0" />
+                  <FaWhatsapp className="w-5 h-5 text-red-500 flex-shrink-0" />
                   <span className="text-sm">+54 351 751-6450</span>
                 </div>
               </div>
@@ -72,7 +73,7 @@ const WissenFooter = () => {
                   onClick={sendWhatsApp}
                   className="w-12 h-12 bg-gray-800 hover:bg-green-500 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                 >
-                  <MessageCircle className="w-6 h-6" />
+                  <FaWhatsapp className="w-6 h-6" />
                 </button>
               </div>
 

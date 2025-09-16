@@ -118,13 +118,14 @@ const Navbar = ({
         />
       )}
 
-      <nav className="fixed top-2 z-50 w-full transition-all duration-300 ease-in-out">
+      <nav className="fixed top-4 z-50 w-full transition-all duration-300 ease-in-out px-4">
         <div
-          className={`mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col rounded-xl transition-all duration-300
+          className={`mx-auto px-4 sm:px-6 lg:px-8 flex flex-col rounded-xl transition-all duration-300
       ${
         scrolled
-          ? "max-w-[950px] backdrop-blur-lg border border-white/30 bg-[var(--red)] py-3"
-          : "max-w-[1200px] bg-transparent py-4"
+  ? "w-full max-w-[95%] md:max-w-[1050px] backdrop-blur-lg border border-white/30 bg-[var(--red)] py-3"
+
+          : "w-full max-w-[1200px] bg-transparent py-4"
       }
     `}
         >

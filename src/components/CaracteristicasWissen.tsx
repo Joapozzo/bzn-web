@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 const WissenFeaturesSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPlaying, setIsPlaying] = useState(true);
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
     // Datos del proyecto
     const projectImages = [
@@ -45,6 +48,42 @@ const WissenFeaturesSection = () => {
         { number: "1", label: "Plaza Interior", icon: "🌳" },
     ];
 
+    // Variants para animaciones
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    const slideVariants = {
+        hidden: { opacity: 0, x: -100 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut"
+            }
+        }
+    };
+
     // Auto-slider
     useEffect(() => {
         if (!isPlaying) return;
@@ -64,15 +103,24 @@ const WissenFeaturesSection = () => {
 
     return (
         <section
+            ref={sectionRef}
             id="caracteristicas"
             className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 relative overflow-hidden"
         >
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(239,68,68,0.1),transparent_50%)]"></div>
 
-            <div className="max-w-7xl mx-auto px-4 relative z-10">
+            <motion.div 
+                className="max-w-7xl mx-auto px-4 relative z-10"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+            >
                 {/* Header */}
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    variants={itemVariants}
+                >
                     <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
                         CARACTERÍSTICAS{" "}
                         <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
@@ -83,13 +131,16 @@ const WissenFeaturesSection = () => {
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto">
                         Diseño contemporáneo que combina materiales nobles con tecnología de vanguardia
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Main Grid */}
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left: Image Slider */}
-                    <div className="relative group">
+                    <motion.div 
+                        className="relative group"
+                        variants={slideVariants}
+                    >
                         <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                             {/* Image Container */}
                             <div className="relative w-full h-full">
@@ -151,22 +202,29 @@ const WissenFeaturesSection = () => {
                         </div>
 
                         {/* Stats Cards - Positioned over slider */}
-                        <div className="absolute -bottom-8 left-0 right-0 grid grid-cols-4 gap-3 px-4">
+                        <motion.div 
+                            className="absolute -bottom-8 left-0 right-0 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 px-4"
+                            variants={containerVariants}
+                        >
                             {stats.map((stat, index) => (
-                                <div
+                                <motion.div
                                     key={index}
-                                    className="bg-black/80 backdrop-blur-sm border border-gray-700 rounded-lg p-3 text-center transform hover:scale-105 transition-all duration-300 hover:border-red-500"
+                                    variants={itemVariants}
+                                    className="bg-black/80 backdrop-blur-sm border border-gray-700 rounded-lg p-2 sm:p-3 text-center transform hover:scale-105 transition-all duration-300 hover:border-red-500"
                                 >
-                                    <div className="text-2xl mb-1">{stat.icon}</div>
-                                    <div className="text-2xl font-bold text-red-400">{stat.number}</div>
-                                    <div className="text-xs text-gray-300 font-medium">{stat.label}</div>
-                                </div>
+                                    <div className="text-lg sm:text-2xl mb-1">{stat.icon}</div>
+                                    <div className="text-lg sm:text-2xl font-bold text-red-400">{stat.number}</div>
+                                    <div className="text-[10px] sm:text-xs text-gray-300 font-medium leading-tight">{stat.label}</div>
+                                </motion.div>
                             ))}
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Right: Features Grid */}
-                    <div className="mt-16 lg:mt-0">
+                    <motion.div 
+                        className="mt-16 lg:mt-0"
+                        variants={itemVariants}
+                    >
                         <div className="mb-8">
                             <h3 className="text-2xl font-bold text-white mb-4">
                                 Calidad en cada detalle
@@ -177,45 +235,58 @@ const WissenFeaturesSection = () => {
                         </div>
 
                         {/* Compact Features Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto custom-scrollbar">
+                        <motion.div 
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto custom-scrollbar"
+                            variants={containerVariants}
+                        >
                             {characteristics.map((characteristic, index) => {
                                 const [emoji, ...textParts] = characteristic.split(' ');
                                 const text = textParts.join(' ');
 
                                 return (
-                                    <div
+                                    <motion.div
                                         key={index}
+                                        variants={itemVariants}
                                         className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-3 hover:border-red-500 hover:bg-red-500/10 transition-all duration-300 cursor-pointer"
                                     >
-                                        <div className="flex items-start space-x-3">
-                                            <span className="text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div className="flex items-start space-x-2 sm:space-x-3">
+                                            <span className="text-base sm:text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                                 {emoji}
                                             </span>
-                                            <span className="text-gray-300 text-sm leading-tight group-hover:text-white transition-colors duration-300">
+                                            <span className="text-gray-300 text-xs sm:text-sm leading-tight group-hover:text-white transition-colors duration-300 break-words">
                                                 {text}
                                             </span>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 );
                             })}
-                        </div>
+                        </motion.div>
 
                         {/* Additional Info */}
-                        <div className="mt-6 grid grid-cols-2 gap-4">
-                            <div className="bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-lg p-4 text-center">
-                                <div className="text-2xl mb-2">🛡️</div>
-                                <div className="text-white font-semibold text-sm">Seguridad 24/7</div>
-                                <div className="text-gray-400 text-xs">Sistema integral</div>
-                            </div>
-                            <div className="bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/30 rounded-lg p-4 text-center">
-                                <div className="text-2xl mb-2">🌱</div>
-                                <div className="text-white font-semibold text-sm">Sustentable</div>
-                                <div className="text-gray-400 text-xs">Diseño ecológico</div>
-                            </div>
-                        </div>
-                    </div>
+                        <motion.div 
+                            className="mt-6 grid grid-cols-2 gap-4"
+                            variants={containerVariants}
+                        >
+                            <motion.div 
+                                variants={itemVariants}
+                                className="bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-lg p-3 sm:p-4 text-center"
+                            >
+                                <div className="text-xl sm:text-2xl mb-2">🛡️</div>
+                                <div className="text-white font-semibold text-xs sm:text-sm">Seguridad 24/7</div>
+                                <div className="text-gray-400 text-[10px] sm:text-xs">Sistema integral</div>
+                            </motion.div>
+                            <motion.div 
+                                variants={itemVariants}
+                                className="bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/30 rounded-lg p-3 sm:p-4 text-center"
+                            >
+                                <div className="text-xl sm:text-2xl mb-2">🌱</div>
+                                <div className="text-white font-semibold text-xs sm:text-sm">Sustentable</div>
+                                <div className="text-gray-400 text-[10px] sm:text-xs">Diseño ecológico</div>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Custom Scrollbar Styles */}
             <style jsx>{`

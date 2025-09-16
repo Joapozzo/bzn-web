@@ -1,10 +1,26 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, MessageCircle, Home, Bath, Maximize, Square, Car, Store, Shield, Zap, MapPin, TrendingUp, Users, Building } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { FaWhatsapp, FaHome, FaBath, FaExpand, FaSquare, FaCar, FaStore, FaBolt, FaMapMarkerAlt, FaUsers, FaBuilding } from 'react-icons/fa';
+import { FaShield } from 'react-icons/fa6';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+
+interface Tipologia {
+    tipo: string;
+    supPropia: number;
+    supBalcon: number;
+    supComun: number;
+    supTotal: number;
+    dormitorios: number;
+    banos: number;
+    disponibles: number;
+}
 
 const WissenTipologiasSection = () => {
-    const [selectedTipologia, setSelectedTipologia] = useState(null);
+    const [selectedTipologia, setSelectedTipologia] = useState<number | null>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
 
-    const tipologias = [
+    const tipologias: Tipologia[] = [
         { tipo: "A", supPropia: 42.69, supBalcon: 1.25, supComun: 5.15, supTotal: 49.09, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "B", supPropia: 40.77, supBalcon: 1.25, supComun: 4.54, supTotal: 46.56, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 1 },
@@ -14,42 +30,62 @@ const WissenTipologiasSection = () => {
         { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 3, banos: 2, disponibles: 4 }
     ];
 
-    const getAvailabilityColor = (available) => {
+    // Animaciones en scroll
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = parseInt(entry.target.getAttribute('data-index') || '0');
+                        setVisibleCards(prev => new Set([...prev, index]));
+                    }
+                });
+            },
+            { threshold: 0.2, rootMargin: '50px' }
+        );
+
+        const cards = sectionRef.current?.querySelectorAll('[data-index]');
+        cards?.forEach((card) => observer.observe(card));
+
+        return () => observer.disconnect();
+    }, []);
+
+    const getAvailabilityColor = (available: number): string => {
         if (available > 3) return 'bg-green-500';
         if (available > 1) return 'bg-yellow-500';
         return 'bg-red-500';
     };
 
-    const getAvailabilityText = (available) => {
-        if (available > 1) return 'Únidades disponibles';
-        if (available === 1) return 'Únidad disponible';
+    const getAvailabilityText = (available: number): string => {
+        if (available > 1) return 'Unidades disponibles';
+        if (available === 1) return 'Unidad disponible';
         return 'Últimas unidades';
     };
 
-    const sendWhatsApp = (message = "Hola, me interesa WISSEN DF. ¿Podrían contactarme?") => {
-        const phone = "5493515000000"; // Reemplazar con número real
+    const sendWhatsApp = (message: string = "Hola, me interesa WISSEN DF. ¿Podrían contactarme?"): void => {
+        const phone = "5493517516450";
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
 
-    const getImagePath = (tipo) => {
-        const imageMap = {
+    const getImagePath = (tipo: string): string => {
+        const imageMap: Record<string, string> = {
             'A': '/imgs/wissen/tipologias/A.png',
             'B': '/imgs/wissen/tipologias/B.png',
-            'C': '/imgs/wissen/tipologias/Baja.png', // Asumiendo que C es "Baja"
+            'C': '/imgs/wissen/tipologias/Baja.png',
             'D': '/imgs/wissen/tipologias/D.png',
             'E': '/imgs/wissen/tipologias/E.png',
             'F': '/imgs/wissen/tipologias/F.png',
-            'G': '/imgs/wissen/tipologias/Patio.png' // Asumiendo que G es "Patio"
+            'G': '/imgs/wissen/tipologias/Patio.png'
         };
         return imageMap[tipo] || `/imgs/wissen/tipologias/${tipo}.png`;
     };
 
     return (
-        <section id="tipologias" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <section ref={sectionRef} id="tipologias" className="py-20 bg-gradient-to-br from-gray-50 to-white">
             <div className="max-w-7xl mx-auto px-4">
-                {/* Header */}
-                <div className="text-center mb-16">
+                {/* Header con animación */}
+                <div className="text-center mb-16 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
                     <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-4">
                         TIPOLOGÍAS{" "}
                         <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
@@ -67,13 +103,22 @@ const WissenTipologiasSection = () => {
                     {tipologias.map((tipologia, index) => (
                         <div
                             key={index}
-                            className={`group relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-500 overflow-hidden ${selectedTipologia === index
+                            data-index={index}
+                            className={`group relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-700 overflow-hidden transform ${
+                                visibleCards.has(index) 
+                                    ? 'translate-y-0 opacity-100' 
+                                    : 'translate-y-10 opacity-0'
+                            } ${selectedTipologia === index
                                 ? 'border-red-500 shadow-2xl scale-[1.02]'
-                                : 'border-gray-200 hover:border-gray-300 hover:shadow-xl'
-                                }`}
+                                : 'border-gray-200 hover:border-red-300 hover:shadow-xl'
+                            }`}
+                            style={{ 
+                                transitionDelay: `${index * 100}ms`,
+                                animationDelay: `${index * 100}ms`
+                            }}
                         >
                             {/* Availability Badge */}
-                            <div className={`shadow-lg absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-white text-sm font-bold ${getAvailabilityColor(tipologia.disponibles)}`}>
+                            <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-white text-sm font-bold ${getAvailabilityColor(tipologia.disponibles)} shadow-lg`}>
                                 {tipologia.disponibles} {getAvailabilityText(tipologia.disponibles)}
                             </div>
 
@@ -93,11 +138,11 @@ const WissenTipologiasSection = () => {
                                         <h3 className="text-2xl font-black">TIPO {tipologia.tipo}</h3>
                                         <div className="flex items-center gap-3 text-sm">
                                             <span className="flex items-center gap-1">
-                                                <Home className="w-4 h-4" />
+                                                <FaHome className="w-4 h-4" />
                                                 {tipologia.dormitorios} {tipologia.dormitorios === 1 ? 'Dorm' : 'Dorms'}
                                             </span>
                                             <span className="flex items-center gap-1">
-                                                <Bath className="w-4 h-4" />
+                                                <FaBath className="w-4 h-4" />
                                                 {tipologia.banos} {tipologia.banos === 1 ? 'Baño' : 'Baños'}
                                             </span>
                                         </div>
@@ -119,19 +164,19 @@ const WissenTipologiasSection = () => {
                                         <div className="grid grid-cols-2 gap-4">
 
                                             {/* Main Surface */}
-                                            <div className="bg-gray-50 rounded-lg p-4 text-center">
+                                            <div className="bg-gray-50 rounded-lg p-4 text-center group-hover:bg-gray-100 transition-colors duration-300">
                                                 <div className="flex items-center justify-center mb-2">
-                                                    <Square className="w-5 h-5 text-gray-600 mr-2" />
+                                                    <FaSquare className="w-5 h-5 text-gray-600 mr-2" />
                                                     <span className="text-sm font-medium text-gray-600">Superficie Propia</span>
                                                 </div>
                                                 <div className="text-2xl font-black text-gray-900">{tipologia.supPropia}</div>
                                                 <div className="text-sm text-gray-500">m²</div>
                                             </div>
 
-                                            {/* Total Surface - Highlighted */}
-                                            <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-center text-white">
+                                            {/* Total Surface - Con menos rojo */}
+                                            <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-center text-white group-hover:from-red-600 group-hover:to-red-700 transition-all duration-300">
                                                 <div className="flex items-center justify-center mb-2">
-                                                    <Maximize className="w-5 h-5 mr-2" />
+                                                    <FaExpand className="w-5 h-5 mr-2" />
                                                     <span className="text-sm font-medium">Total</span>
                                                 </div>
                                                 <div className="text-2xl font-black">{tipologia.supTotal}</div>
@@ -142,12 +187,12 @@ const WissenTipologiasSection = () => {
                                         {/* Additional Details */}
                                         <div className="grid grid-cols-2 gap-3 text-sm">
                                             {tipologia.supBalcon > 0 && (
-                                                <div className="flex justify-between items-center bg-blue-50 p-3 rounded-lg">
+                                                <div className="flex justify-between items-center bg-blue-50 p-3 rounded-lg hover:bg-blue-100 transition-colors duration-300">
                                                     <span className="text-blue-700 font-medium">🏢 Balcón</span>
                                                     <span className="font-bold text-blue-900">{tipologia.supBalcon} m²</span>
                                                 </div>
                                             )}
-                                            <div className="flex justify-between items-center bg-green-50 p-3 rounded-lg">
+                                            <div className="flex justify-between items-center bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-colors duration-300">
                                                 <span className="text-green-700 font-medium">🌳 Común</span>
                                                 <span className="font-bold text-green-900">{tipologia.supComun} m²</span>
                                             </div>
@@ -158,20 +203,20 @@ const WissenTipologiasSection = () => {
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <button
                                             onClick={() => setSelectedTipologia(selectedTipologia === index ? null : index)}
-                                            className="flex-1 bg-gray-900 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                                            className="flex-1 bg-gray-900 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                         >
                                             <span>MÁS DETALLES</span>
                                             {selectedTipologia === index ?
-                                                <ChevronUp className="w-5 h-5" /> :
-                                                <ChevronDown className="w-5 h-5" />
+                                                <FiChevronUp className="w-5 h-5" /> :
+                                                <FiChevronDown className="w-5 h-5" />
                                             }
                                         </button>
 
                                         <button
                                             onClick={() => sendWhatsApp(`Hola, me interesa la tipología ${tipologia.tipo} de WISSEN DF. ¿Podrían contactarme?`)}
-                                            className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                                            className="border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                         >
-                                            <MessageCircle className="w-5 h-5" />
+                                            <FaWhatsapp className="w-5 h-5" />
                                             <span>CONSULTAR</span>
                                         </button>
                                     </div>
@@ -230,8 +275,9 @@ const WissenTipologiasSection = () => {
                     ))}
                 </div>
 
+                {/* Espacios Adicionales */}
                 <div className="mt-16 mb-16">
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-8 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
                         <h3 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
                             ESPACIOS{" "}
                             <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
@@ -246,18 +292,12 @@ const WissenTipologiasSection = () => {
 
                     <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                         {/* Cocheras */}
-                        <div
-                            className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-500 overflow-hidden"
-                            style={{ '--red': '#99192B' }}
-                        >
-                            <div
-                                className="p-6 text-white relative overflow-hidden"
-                                style={{ background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)' }}
-                            >
+                        <div className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-300 hover:shadow-xl transition-all duration-500 overflow-hidden opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
+                            <div className="p-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
                                 <div className="relative z-10 flex items-center gap-4">
                                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Car className="w-8 h-8" />
+                                        <FaCar className="w-8 h-8" />
                                     </div>
                                     <div>
                                         <h4 className="text-2xl font-black">COCHERAS</h4>
@@ -277,52 +317,36 @@ const WissenTipologiasSection = () => {
 
                                 <div className="space-y-3 mb-6">
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <Shield className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <FaShield className="w-4 h-4 text-red-500" />
                                         <span>Seguridad 24/7</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <Zap className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <FaBolt className="w-4 h-4 text-red-500" />
                                         <span>Portón automático</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <MapPin className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <FaMapMarkerAlt className="w-4 h-4 text-red-500" />
                                         <span>Ubicación privilegiada</span>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={() => sendWhatsApp("Hola, me interesa una cochera en WISSEN DF. ¿Podrían contactarme?")}
-                                    className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
-                                    style={{
-                                        background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)',
-                                        boxShadow: '0 4px 15px rgba(153, 25, 43, 0.3)'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.background = 'linear-gradient(135deg, #EB484E 0%, #99192B 100%)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.background = 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)';
-                                    }}
+                                    className="w-full border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                 >
-                                    <MessageCircle className="w-5 h-5" />
+                                    <FaWhatsapp className="w-5 h-5" />
                                     <span>CONSULTAR COCHERA</span>
                                 </button>
                             </div>
                         </div>
 
                         {/* Local */}
-                        <div
-                            className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-500 overflow-hidden"
-                            style={{ '--red': '#99192B' }}
-                        >
-                            <div
-                                className="p-6 text-white relative overflow-hidden"
-                                style={{ background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)' }}
-                            >
+                        <div className="group bg-white rounded-2xl shadow-lg border-2 border-gray-200 hover:border-red-300 hover:shadow-xl transition-all duration-500 overflow-hidden opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]">
+                            <div className="p-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
                                 <div className="relative z-10 flex items-center gap-4">
                                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Store className="w-8 h-8" />
+                                        <FaStore className="w-8 h-8" />
                                     </div>
                                     <div>
                                         <h4 className="text-2xl font-black">LOCAL COMERCIAL</h4>
@@ -342,58 +366,44 @@ const WissenTipologiasSection = () => {
 
                                 <div className="space-y-3 mb-6">
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <TrendingUp className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <TrendingUp className="w-4 h-4 text-red-500" />
                                         <span>Alta rentabilidad</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <Users className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <FaUsers className="w-4 h-4 text-red-500" />
                                         <span>Zona de alto tránsito</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm text-gray-600">
-                                        <Building className="w-4 h-4" style={{ color: '#99192B' }} />
+                                        <FaBuilding className="w-4 h-4 text-red-500" />
                                         <span>Planta baja</span>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={() => sendWhatsApp("Hola, me interesa el local comercial en WISSEN DF. ¿Podrían contactarme?")}
-                                    className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
-                                    style={{
-                                        background: 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)',
-                                        boxShadow: '0 4px 15px rgba(153, 25, 43, 0.3)'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.background = 'linear-gradient(135deg, #EB484E 0%, #99192B 100%)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.background = 'linear-gradient(135deg, #99192B 0%, #EB484E 100%)';
-                                    }}
+                                    className="w-full border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                 >
-                                    <MessageCircle className="w-5 h-5" />
+                                    <FaWhatsapp className="w-5 h-5" />
                                     <span>CONSULTAR LOCAL</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Bottom CTA */}
-                {/* <div className="mt-16 text-center">
-                    <div className="inline-block bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 max-w-lg mx-auto">
-                        <div className="text-white mb-6">
-                            <h3 className="text-2xl font-bold mb-2">¿Necesitás más información?</h3>
-                            <p className="text-gray-300">Nuestro equipo te ayudará a elegir la tipología perfecta para vos</p>
-                        </div>
-                        <button
-                            onClick={() => sendWhatsApp()}
-                            className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 mx-auto"
-                        >
-                            <MessageCircle className="w-5 h-5" />
-                            <span>CONTACTAR ASESOR</span>
-                        </button>
-                    </div>
-                </div> */}
             </div>
+
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </section>
     );
 };
