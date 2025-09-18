@@ -22,19 +22,38 @@ const WissenFeaturesSection = () => {
         "/imgs/wissen/galeria/10.jpg",
     ];
 
+    // const characteristics = [
+    //     "🛡️ Ingreso jerarquizado con guardia y CCTV",
+    //     "🧱 Terminaciones en ladrillo visto y H° visto",
+    //     "🛗 Ascensor de última generación en acero inoxidable",
+    //     "🛋️ Pisos cerámicos, porcelanatos y revestimientos de calidad",
+    //     "🪟 Carpinterías de aluminio anodizado",
+    //     "🚪 Puertas placas en MDF color blanco",
+    //     "🍽️ Muebles de cocina con granito y alacena de diseño",
+    //     "🧱 Muros interiores terminados en yeso",
+    //     "🛁 Baños completos con bañera, sanitarios y vanitory",
+    //     "🔥 Sistema contra incendios con detección y presurización",
+    //     "🍳 Artefactos a gas y termotanque eléctrico",
+    //     "💡 Iluminación colocada en todos los espacios",
+    //     "🧥 Dormitorios con interiores de placards",
+    //     "🎥 CCTV en cada departamento",
+    //     "🚗 Cocheras cubiertas con portón levadizo",
+    //     "🌳 Patio interior con equipamiento y parquizado"
+    // ];
+
     const characteristics = [
         "🛡️ Ingreso jerarquizado con guardia y CCTV",
-        "🧱 Terminaciones en ladrillo visto y H° visto",
+        "🧱 Terminaciones en ladrillo visto y revoque plástico impermeable",
         "🛗 Ascensor de última generación en acero inoxidable",
         "🛋️ Pisos cerámicos, porcelanatos y revestimientos de calidad",
         "🪟 Carpinterías de aluminio anodizado",
-        "🚪 Puertas placas en MDF color blanco",
-        "🍽️ Muebles de cocina con granito y alacena de diseño",
+        "🚪 Puerta placas en MDF color blanco y con molduras",
+        "🍽️ Muebles de cocina y alacena en MDF color arena con mesada de granito",
         "🧱 Muros interiores terminados en yeso",
         "🛁 Baños completos con bañera, sanitarios y vanitory",
         "🔥 Sistema contra incendios con detección y presurización",
         "🍳 Artefactos a gas y termotanque eléctrico",
-        "💡 Iluminación colocada en todos los espacios",
+        "💡 Artefactos de iluminación colocados en todos los ambientes",
         "🧥 Dormitorios con interiores de placards",
         "🎥 CCTV en cada departamento",
         "🚗 Cocheras cubiertas con portón levadizo",
@@ -110,14 +129,14 @@ const WissenFeaturesSection = () => {
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(239,68,68,0.1),transparent_50%)]"></div>
 
-            <motion.div 
+            <motion.div
                 className="max-w-7xl mx-auto px-4 relative z-10"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
             >
                 {/* Header */}
-                <motion.div 
+                <motion.div
                     className="text-center mb-12"
                     variants={itemVariants}
                 >
@@ -134,14 +153,14 @@ const WissenFeaturesSection = () => {
                 </motion.div>
 
                 {/* Main Grid */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 md:gap-12 gap-0 items-center">
 
                     {/* Left: Image Slider */}
-                    <motion.div 
+                    <motion.div
                         className="relative group"
                         variants={slideVariants}
                     >
-                        <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl mb-6 md:mb-0">
                             {/* Image Container */}
                             <div className="relative w-full h-full">
                                 {projectImages.map((image, index) => (
@@ -202,8 +221,8 @@ const WissenFeaturesSection = () => {
                         </div>
 
                         {/* Stats Cards - Positioned over slider */}
-                        <motion.div 
-                            className="absolute -bottom-8 left-0 right-0 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 px-4"
+                        <motion.div
+                            className="md:absolute md:-bottom-20 md:left-0 md:right-0 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 px-4 md:px-4"
                             variants={containerVariants}
                         >
                             {stats.map((stat, index) => (
@@ -221,7 +240,7 @@ const WissenFeaturesSection = () => {
                     </motion.div>
 
                     {/* Right: Features Grid */}
-                    <motion.div 
+                    <motion.div
                         className="mt-16 lg:mt-0"
                         variants={itemVariants}
                     >
@@ -235,7 +254,7 @@ const WissenFeaturesSection = () => {
                         </div>
 
                         {/* Compact Features Grid */}
-                        <motion.div 
+                        <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto custom-scrollbar"
                             variants={containerVariants}
                         >
@@ -263,11 +282,11 @@ const WissenFeaturesSection = () => {
                         </motion.div>
 
                         {/* Additional Info */}
-                        <motion.div 
+                        <motion.div
                             className="mt-6 grid grid-cols-2 gap-4"
                             variants={containerVariants}
                         >
-                            <motion.div 
+                            <motion.div
                                 variants={itemVariants}
                                 className="bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-lg p-3 sm:p-4 text-center"
                             >
@@ -275,7 +294,7 @@ const WissenFeaturesSection = () => {
                                 <div className="text-white font-semibold text-xs sm:text-sm">Seguridad 24/7</div>
                                 <div className="text-gray-400 text-[10px] sm:text-xs">Sistema integral</div>
                             </motion.div>
-                            <motion.div 
+                            <motion.div
                                 variants={itemVariants}
                                 className="bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/30 rounded-lg p-3 sm:p-4 text-center"
                             >

@@ -177,7 +177,7 @@ const WissenTipologiasSection = () => {
                                             <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-center text-white group-hover:from-red-600 group-hover:to-red-700 transition-all duration-300">
                                                 <div className="flex items-center justify-center mb-2">
                                                     <FaExpand className="w-5 h-5 mr-2" />
-                                                    <span className="text-sm font-medium">Total</span>
+                                                    <span className="text-sm font-medium">Superficie</span>
                                                 </div>
                                                 <div className="text-2xl font-black">{tipologia.supTotal}</div>
                                                 <div className="text-sm opacity-80">m²</div>
