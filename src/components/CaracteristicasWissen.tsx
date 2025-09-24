@@ -15,7 +15,7 @@ const WissenFeaturesSection = () => {
         "/imgs/wissen/galeria/3.jpg",
         "/imgs/wissen/galeria/4.jpg",
         "/imgs/wissen/galeria/5.jpg",
-        "/imgs/wissen/galeria/6.jpg",
+        // "/imgs/wissen/galeria/6.jpg",
         "/imgs/wissen/galeria/7.jpg",
         "/imgs/wissen/galeria/8.jpg",
         "/imgs/wissen/galeria/9.jpg",
