@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.tsx";
+---
+
+<Layout>
+  <Navbar client:visible />
+  <div class="error-page">
+    <p class="error-page__code">404</p>
+    <div class="error-page__line" aria-hidden="true"></div>
+    <p class="error-page__text">Página no encontrada</p>
+    <a href="/" class="error-page__link">Volver al inicio</a>
+  </div>
+</Layout>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .error-page__code {
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--red);
+    margin: 0;
+  }
+
+  .error-page__line {
+    width: 4rem;
+    height: 3px;
+    background: var(--red);
+    margin: 1.5rem 0;
+  }
+
+  .error-page__text {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--black-400);
+    margin: 0 0 2rem;
+  }
+
+  .error-page__link {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .error-page__link:hover {
+    background: var(--red);
+    color: var(--white);
+  }
+</style>
