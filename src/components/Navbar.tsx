@@ -5,24 +5,35 @@ import Button from "./UI/Button";
 import Plus from "../../public/imgs/icons/Plus";
 import { CONTACTO_TELEFONO, enviarMensajeWhatsApp } from "../scripts/buttonsFunctions";
 
+interface ProyectoLink {
+  label: string;
+  href: string;
+}
+
 interface NavbarProps {
   navLinks?: string[];
-  isWissenPage?: boolean;
+  isProjectPage?: boolean;
   homeUrl?: string;
-  wissenUrl?: string;
+  proyectosSubmenu?: ProyectoLink[];
 }
+
+const DEFAULT_PROYECTOS: ProyectoLink[] = [
+  { label: "Wissen DF", href: "/proyectos/wissen-df" },
+  { label: "Tejas 4", href: "/proyectos/tejas-4" },
+];
 
 const Navbar = ({ 
   navLinks = ["Trabajos", "Servicios", "Nosotros", "Contacto"],
-  isWissenPage = false,
+  isProjectPage = false,
   homeUrl = "/",
-  wissenUrl = "/wissen-df"
+  proyectosSubmenu = DEFAULT_PROYECTOS
 }: NavbarProps) => {
-  const textoMensaje = isWissenPage 
-    ? "Hola, quiero más información sobre Wissen DF." 
+  const textoMensaje = isProjectPage 
+    ? "Hola, quiero más información sobre este proyecto." 
     : "Hola, quiero saber más sobre tu empresa y tus proyectos. ¿Te interesa?";
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [proyectosOpen, setProyectosOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const abrirMenu = () => {
@@ -43,7 +54,7 @@ const Navbar = ({
   }, [menuOpen]);
 
   const navToHome = () => {
-    if (isWissenPage) {
+    if (isProjectPage) {
       window.location.href = homeUrl;
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -89,14 +100,15 @@ const Navbar = ({
 
   // Función para generar href basado en el contexto
   const getNavHref = (link: string) => {
-    if (isWissenPage) {
+    if (isProjectPage) {
       const linkMap: { [key: string]: string } = {
         "Ubicación": "#ubicacion",
         "Características": "#caracteristicas", 
         "Tipologías": "#tipologias",
+        "Detalles": "#detalles",
         "Contacto": "#contacto"
       };
-      return linkMap[link] || `#${link.toLowerCase()}`;
+      return linkMap[link] || `#${link.toLowerCase().replace(/\s/g, "")}`;
     } else {
       const linkMap: { [key: string]: string } = {
         "Trabajos": "#works",
@@ -150,23 +162,51 @@ const Navbar = ({
                 />
               ))}
               
-              {isWissenPage ? (
+              {isProjectPage ? (
                 <NavLink 
                   href={homeUrl} 
                   text="Inicio" 
                 />
               ) : (
-                <NavLink 
-                  href={wissenUrl} 
-                  text="Wissen DF" 
-                />
+                <div 
+                  className="relative inline-block"
+                  onMouseEnter={() => setProyectosOpen(true)}
+                  onMouseLeave={() => setProyectosOpen(false)}
+                >
+                  <button
+                    className="text-white font-medium hover:opacity-90 transition-opacity uppercase text-sm border-none bg-transparent cursor-pointer flex items-center gap-1 py-2"
+                    onClick={() => setProyectosOpen(!proyectosOpen)}
+                    aria-expanded={proyectosOpen}
+                    aria-haspopup="true"
+                  >
+                    Proyectos
+                    <svg className={`w-4 h-4 transition-transform ${proyectosOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {proyectosOpen && (
+                    <div className="absolute left-0 top-full pt-1 w-48 z-50">
+                      <div className="py-2 bg-[var(--black)] border border-white/20 rounded-lg shadow-xl">
+                        {proyectosSubmenu.map((item, idx) => (
+                          <a
+                            key={idx}
+                            href={item.href}
+                            className="block px-4 py-2.5 text-white hover:bg-white/10 text-sm transition-colors"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
 
             {/* Botón desktop */}
             <div className="hidden md:block">
               <Button
-                text={isWissenPage ? "Más info" : "Saber más"}
+                text={isProjectPage ? "Más info" : "Saber más"}
                 icon={<Plus />}
                 color={scrolled ? "var(--red-200)" : "var(--red)"}
                 onClick={() =>
@@ -218,22 +258,28 @@ const Navbar = ({
               ))}
               
               {/* Link para cambiar de página en mobile */}
-              {isWissenPage ? (
+              {isProjectPage ? (
                 <NavLink 
                   href={homeUrl} 
                   text="Volver al Inicio" 
                   onClick={abrirMenu}
                 />
               ) : (
-                <NavLink 
-                  href={wissenUrl} 
-                  text="Ver Wissen DF" 
-                  onClick={abrirMenu}
-                />
+                <>
+                  <div className="text-white/80 text-sm font-medium uppercase tracking-wide">Proyectos</div>
+                  {proyectosSubmenu.map((item, idx) => (
+                    <NavLink 
+                      key={idx}
+                      href={item.href} 
+                      text={item.label} 
+                      onClick={abrirMenu}
+                    />
+                  ))}
+                </>
               )}
               
               <Button
-                text={isWissenPage ? "Más info" : "Saber más"}
+                text={isProjectPage ? "Más info" : "Saber más"}
                 icon={<Plus />}
                 color="var(--red-200)"
                 onClick={() => {

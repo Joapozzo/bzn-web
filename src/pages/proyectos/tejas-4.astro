@@ -1,0 +1,157 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import HeroProyecto from "../../components/HeroProyecto";
+import UbicacionProyecto from "../../components/UbicacionProyecto";
+import CaracteristicasProyecto from "../../components/CaracteristicasProyecto";
+import DetallesProyecto from "../../components/DetallesProyecto";
+import FinanciamientoProyecto from "../../components/FinanciamientoProyecto";
+import FooterProyecto from "../../components/FooterProyecto";
+
+const TEJAS4 = {
+  hero: {
+    title: "TEJAS 4",
+    subtitle: "Casa 2 dormitorios en Tejas 4. Una vivienda con diseño arquitectónico y contacto 100% con la naturaleza.",
+    heroImage: "/imgs/tejas4/1.jpg",
+    whatsappMessage: "Hola, quiero más información sobre la casa de 2 dormitorios en Tejas 4.",
+    phone: "5493517659117",
+  },
+  ubicacion: {
+    address: "Tejas 4 barrio cerrado",
+    addressDetail: "Colectora, X5101 Villa Carlos Paz, Córdoba",
+    mapEmbedUrl: "https://www.google.com/maps?q=-31.4467295,-64.4332413&z=15&output=embed",
+    mapLink: "https://maps.app.goo.gl/3JrUSscA814JYt6H9",
+    description: "Tejas 4 se encuentra a 17 min del ingreso de la Ciudad y a 30 min de la ciudad de Córdoba, con fácil acceso al anillo de circunvalación.",
+    amenities: [
+      { icon: "🛡️", title: "Seguridad 24hs", desc: "Barrio cerrado con seguridad las 24 horas" },
+      { icon: "🌳", title: "Espacios verdes", desc: "Contacto pleno con las sierras y naturaleza" },
+      { icon: "👨‍👩‍👧‍👦", title: "Quincho", desc: "Espacios para disfrutar en familia" },
+      { icon: "🚗", title: "Conectividad", desc: "17 min al ingreso de la Ciudad, 30 min a Córdoba" },
+    ],
+    stats: [
+      { number: "17", label: "MIN A LA CIUDAD" },
+      { number: "30", label: "MIN A CÓRDOBA" },
+      { number: "100%", label: "NATURALEZA" },
+    ],
+  },
+  caracteristicas: {
+    images: [
+      "/imgs/tejas4/1.jpg",
+      "/imgs/tejas4/2.jpg",
+      "/imgs/tejas4/3.jpg",
+      "/imgs/tejas4/4.jpg",
+    ],
+    characteristics: [
+      "🚗 Cochera cubierta para 2 vehículos y extras",
+      "🌿 Ingreso con gran espacio verde",
+      "🏠 Ingreso jerarquizado con doble altura",
+      "🚻 Toilette",
+      "🛋️ Gran living comedor con doble altura",
+      "🌅 Conexión directa del living comedor con el patio",
+      "🍖 Galería cubierta con asador",
+      "🛏️ 2 dormitorios con baño en suite completos",
+      "📚 1 estudio con posibilidad de 3er dormitorio",
+      "🌳 Gran patio para disfrutar de la naturaleza",
+      "🔥 Caldera dual con radiadores",
+    ],
+    introTitle: "Calidad en cada detalle",
+    introText: "Una vivienda con diseño arquitectónico y distribuciones que te ofrecen una excelente calidad ambiental en un barrio en contacto con la naturaleza.",
+  },
+  detalles: [
+    { label: "Sup. Terreno", value: "350,40 m²" },
+    { label: "Sup. Cubierta", value: "125,18 m²" },
+    { label: "Sup. Semicubierta", value: "30,98 m²" },
+    { label: "Sup. Total", value: "156,11 m²" },
+    { label: "Antigüedad", value: "A estrenar" },
+    { label: "Garage", value: "2 vehículos" },
+    { label: "Dormitorios", value: "2" },
+    { label: "Estudio", value: "1" },
+    { label: "Baños", value: "2" },
+    { label: "Toilette", value: "1" },
+    { label: "Ambientes", value: "5" },
+  ],
+  financiamiento: {
+    showPrecioTitle: false,
+    showEntregaCuotas: false,
+    estadoBadge: "A estrenar",
+    slogan: "¿Te interesa? Escribinos y te contamos todos los detalles.",
+    whatsappMessage: "Hola, me interesa la casa de 2 dormitorios en Tejas 4. ¿Podrían darme más información?",
+    phone: "5493517659117",
+    buttonText: "Consultá por esta propiedad",
+  },
+  footer: {
+    projectName: "Tejas 4",
+    projectNameHighlight: "4",
+    projectDescription: "Casa de 2 dormitorios en Tejas 4. Una vivienda con diseño arquitectónico, excelente calidad ambiental y contacto 100% con la naturaleza. Servicios: agua corriente, luz, gas.",
+    address: "Tejas 4 barrio cerrado, Colectora, X5101 Villa Carlos Paz, Córdoba",
+    phone: "5493517659117",
+    phoneFormatted: "351-7659117",
+    email: "fede.bazan427@gmail.com",
+    whatsappMessage: "Hola, me interesa Tejas 4. ¿Podrían contactarme?",
+    instagramUrl: "https://instagram.com/grupo.bzn",
+    showExperienceBlock: true,
+  },
+};
+---
+
+<Layout>
+  <Navbar
+    client:visible
+    navLinks={["Ubicación", "Características", "Detalles", "Contacto"]}
+    isProjectPage={true}
+    homeUrl="/"
+    proyectosSubmenu={[
+      { label: "Wissen DF", href: "/proyectos/wissen-df" },
+      { label: "Tejas 4", href: "/proyectos/tejas-4" },
+    ]}
+  />
+  <HeroProyecto
+    client:load
+    title={TEJAS4.hero.title}
+    subtitle={TEJAS4.hero.subtitle}
+    heroImage={TEJAS4.hero.heroImage}
+    whatsappMessage={TEJAS4.hero.whatsappMessage}
+    phone={TEJAS4.hero.phone}
+  />
+  <UbicacionProyecto
+    client:load
+    address={TEJAS4.ubicacion.address}
+    addressDetail={TEJAS4.ubicacion.addressDetail}
+    mapEmbedUrl={TEJAS4.ubicacion.mapEmbedUrl}
+    mapLink={TEJAS4.ubicacion.mapLink}
+    description={TEJAS4.ubicacion.description}
+    amenities={TEJAS4.ubicacion.amenities}
+    stats={TEJAS4.ubicacion.stats}
+  />
+  <CaracteristicasProyecto
+    client:load
+    images={TEJAS4.caracteristicas.images}
+    characteristics={TEJAS4.caracteristicas.characteristics}
+    introTitle={TEJAS4.caracteristicas.introTitle}
+    introText={TEJAS4.caracteristicas.introText}
+  />
+  <DetallesProyecto client:load items={TEJAS4.detalles} />
+  <FinanciamientoProyecto
+    client:load
+    showPrecioTitle={TEJAS4.financiamiento.showPrecioTitle}
+    showEntregaCuotas={TEJAS4.financiamiento.showEntregaCuotas}
+    estadoBadge={TEJAS4.financiamiento.estadoBadge}
+    slogan={TEJAS4.financiamiento.slogan}
+    whatsappMessage={TEJAS4.financiamiento.whatsappMessage}
+    phone={TEJAS4.financiamiento.phone}
+    buttonText={TEJAS4.financiamiento.buttonText}
+  />
+  <FooterProyecto
+    client:load
+    projectName={TEJAS4.footer.projectName}
+    projectNameHighlight={TEJAS4.footer.projectNameHighlight}
+    projectDescription={TEJAS4.footer.projectDescription}
+    address={TEJAS4.footer.address}
+    phone={TEJAS4.footer.phone}
+    phoneFormatted={TEJAS4.footer.phoneFormatted}
+    email={TEJAS4.footer.email}
+    whatsappMessage={TEJAS4.footer.whatsappMessage}
+    instagramUrl={TEJAS4.footer.instagramUrl}
+    showExperienceBlock={TEJAS4.footer.showExperienceBlock}
+  />
+</Layout>

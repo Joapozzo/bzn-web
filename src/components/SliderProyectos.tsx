@@ -12,24 +12,21 @@ import Button from "./UI/Button";
 
 const SliderProyectos = () => {
   const proyecto = emprendimientosActuales[0];
-  const [activeTab, setActiveTab] = useState<"caracteristicas" | "ubicacion" | "planos" | "obra">("caracteristicas");
+  const [activeTab, setActiveTab] = useState<"caracteristicas" | "ubicacion" | "planos" /* | "obra" */>("caracteristicas");
 
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
 
+  // Solapa obra comentada
   // Generar array de imágenes de obra excluyendo las que no existen
-  const obrasImages: string[] = Array.from({ length: 52 }, (_, i) => {
-    const imageNumber = i + 1;
-
-    // Excluir imágenes que no existen
-    if (imageNumber === 19 || imageNumber === 26) {
-      return null;
-    }
-
-    // La imagen 52 es jpeg, no jpg
-    const extension = imageNumber === 52 ? 'jpeg' : 'jpg';
-    return `/imgs/wissen/obras/${imageNumber}.${extension}`;
-  }).filter((img): img is string => img !== null); // Type guard para filtrar nulls
+  // const obrasImages: string[] = Array.from({ length: 52 }, (_, i) => {
+  //   const imageNumber = i + 1;
+  //   if (imageNumber === 19 || imageNumber === 26) {
+  //     return null;
+  //   }
+  //   const extension = imageNumber === 52 ? 'jpeg' : 'jpg';
+  //   return `/imgs/wissen/obras/${imageNumber}.${extension}`;
+  // }).filter((img): img is string => img !== null);
 
   useEffect(() => {
     import("gsap/ScrollTrigger").then((module) => {
@@ -100,44 +97,43 @@ const SliderProyectos = () => {
         ))}
       </ul>
     ),
-    obra: (
-      <div className="w-full max-w-[400px] mx-auto rounded-lg">
-        <Swiper
-          modules={[Autoplay, Pagination, Navigation]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          pagination={{
-            dynamicBullets: true,
-            clickable: true
-          }}
-          navigation={true}
-          loop={true}
-          spaceBetween={10}
-          slidesPerView={1}
-          className="w-full h-64 max-[768px]:h-56 max-[1199px]:h-72 min-[1200px]:h-80 rounded-lg"
-        >
-          {obrasImages.map((imagen, idx) => (
-            <SwiperSlide key={idx} className="relative">
-              <img
-                src={imagen}
-                alt={`Obra ${idx + 1}`}
-                loading="lazy"
-                className="w-full h-full object-cover rounded-lg"
-                onError={(e) => {
-                  // Fallback en caso de que la imagen no exista
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div className="absolute bottom-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
-                {idx + 1}/{obrasImages.length}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <p className="text-center mt-2 text-xs text-gray-600">
-          Galería de obra
-        </p>
-      </div>
-    )
+    // obra: (
+    //   <div className="w-full max-w-[400px] mx-auto rounded-lg">
+    //     <Swiper
+    //       modules={[Autoplay, Pagination, Navigation]}
+    //       autoplay={{ delay: 3000, disableOnInteraction: false }}
+    //       pagination={{
+    //         dynamicBullets: true,
+    //         clickable: true
+    //       }}
+    //       navigation={true}
+    //       loop={true}
+    //       spaceBetween={10}
+    //       slidesPerView={1}
+    //       className="w-full h-64 max-[768px]:h-56 max-[1199px]:h-72 min-[1200px]:h-80 rounded-lg"
+    //     >
+    //       {obrasImages.map((imagen, idx) => (
+    //         <SwiperSlide key={idx} className="relative">
+    //           <img
+    //             src={imagen}
+    //             alt={`Obra ${idx + 1}`}
+    //             loading="lazy"
+    //             className="w-full h-full object-cover rounded-lg"
+    //             onError={(e) => {
+    //               e.currentTarget.style.display = 'none';
+    //             }}
+    //           />
+    //           <div className="absolute bottom-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
+    //             {idx + 1}/{obrasImages.length}
+    //           </div>
+    //         </SwiperSlide>
+    //       ))}
+    //     </Swiper>
+    //     <p className="text-center mt-2 text-xs text-gray-600">
+    //       Galería de obra
+    //     </p>
+    //   </div>
+    // )
   };
 
   return (
@@ -183,7 +179,10 @@ const SliderProyectos = () => {
             {proyecto.descripcion}
           </p>
           <div className="mt-3 w-full flex md:justify-start justify-center">
-            <Button text="Ver más" />
+            <Button
+              text="Ver más"
+              onClick={() => (window.location.href = proyecto.url)}
+            />
           </div>
         </div>
 
@@ -193,7 +192,7 @@ const SliderProyectos = () => {
           className="py-4 px-4 max-[1199px]:px-6 text-black z-10 w-full flex flex-col items-center min-[1200px]:items-start self-center min-[1200px]:self-start"
         >
           <div className="flex gap-1 mb-4 bg-[var(--red)] px-2 py-2 rounded-lg justify-center items-center w-full">
-            {(["caracteristicas", "ubicacion", "planos", "obra"] as const).map(
+            {(["caracteristicas", "ubicacion", "planos" /* , "obra" */] as const).map(
               (tab) => (
                 <button
                   key={tab}

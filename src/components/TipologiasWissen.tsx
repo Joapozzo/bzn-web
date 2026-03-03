@@ -25,7 +25,7 @@ const WissenTipologiasSection = () => {
         { tipo: "B", supPropia: 40.77, supBalcon: 1.25, supComun: 4.54, supTotal: 46.56, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 1 },
-        { tipo: "E", supPropia: 43.11, supBalcon: 1.25, supComun: 5.19, supTotal: 49.55, dormitorios: 1, banos: 1, disponibles: 2 },
+        { tipo: "E", supPropia: 43.11, supBalcon: 0, supComun: 5.19, supTotal: 48.3, dormitorios: 1, banos: 1, disponibles: 2 },
         { tipo: "F", supPropia: 40.87, supBalcon: 1.25, supComun: 4.93, supTotal: 47.05, dormitorios: 1, banos: 1, disponibles: 2 },
         { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 1, banos: 1, disponibles: 4 }
     ];
@@ -72,7 +72,7 @@ const WissenTipologiasSection = () => {
         const imageMap: Record<string, string> = {
             'A': '/imgs/wissen/tipologias/A.png',
             'B': '/imgs/wissen/tipologias/B.png',
-            'C': '/imgs/wissen/tipologias/Baja.png',
+            'C': '/imgs/wissen/tipologias/C.png',
             'D': '/imgs/wissen/tipologias/D.png',
             'E': '/imgs/wissen/tipologias/E.png',
             'F': '/imgs/wissen/tipologias/F.png',

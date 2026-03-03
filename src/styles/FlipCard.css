@@ -1,283 +1,73 @@
-/* FlipCard.css - Con animación ultra moderna y llamativa */
+/* Emprendimiento card - Sin flip, fotos anchas, minimal */
 
-/* Contenedor principal */
-.flip-card {
-    width: 300px;
-    height: 400px;
-    position: relative;
-    cursor: pointer;
-    perspective: 1500px;
-    
-    @media (max-width: 1059px) {
-        width: 400px;
-        height: 400px;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        height: 400px;
-    }
+.emprendimiento-card {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--black-200, #1a1a1a);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.flip-card-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.3s ease;
+.emprendimiento-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
 }
 
-.flip-card:hover .flip-card-container {
-    transform: translateY(-8px);
+.emprendimiento-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-/* Estilos de las caras */
-.card-side {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Animación principal - Tipo "Cubo giratorio" */
-.front-wrapper, .back-wrapper {
-    transition: all 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
-    backface-visibility: hidden;
-}
-
-.front-wrapper {
-    z-index: 2;
-    transform: rotateY(0);
-}
-
-.back-wrapper {
-    z-index: 1;
-    transform: rotateY(-180deg);
-}
-
-/* La animación ocurre solo en el eje Y, evitando problemas de texto invertido */
-.flip-card.is-flipped .front-wrapper {
-    transform: rotateY(180deg);
-}
-
-.flip-card.is-flipped .back-wrapper {
-    transform: rotateY(0);
-    z-index: 2;
-}
-
-/* Estilos del contenido */
-.card-front, .card-back {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-    color: white;
-    font-size: 20px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-/* Efecto de paralaje en la imagen de fondo */
-.card-front {
-    background-size: 110% 110%;
-    transition: background-size 0.8s ease;
-}
-
-.flip-card:hover .card-front {
-    background-size: 120% 120%;
-}
-
-/* Estilos del título */
-.card-title {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 8px 0 0;
-    transition: transform 0.3s ease;
-}
-
-.card-category {
-    font-size: 16px;
-    opacity: 0.9;
-    margin: 0;
-}
-
-.info-wrapper {
-    transform: translateY(5px);
-    transition: transform 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.flip-card:hover .info-wrapper {
-    transform: translateY(0);
-}
-
-/* Estilos de la parte trasera */
-.card-back {
-    justify-content: center;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.card-description {
-    margin-top: 0;
-    font-size: 18px;
-    line-height: 1.4;
-    max-width: 100%;
-}
-
-.card-details {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-    margin: 0;
-    padding: 0;
-}
-
-.card-details > li { 
-    list-style: none;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    transition: transform 0.3s ease;
-}
-
-.card-details > li:hover {
-    transform: translateX(5px);
-}
-
-/* Overlay con degradado más moderno */
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top, 
-        rgba(0, 0, 0, 0.9) 0%, 
-        rgba(0, 0, 0, 0.7) 20%, 
-        rgba(0, 0, 0, 0.4) 40%, 
-        rgba(0, 0, 0, 0.1) 60%, 
-        rgba(0, 0, 0, 0) 80%
-    );
-    z-index: 1;
-}
-
-.card-content {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-}
-
-/* Efecto de brillo */
-.shine-effect {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(30deg);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    z-index: 2;
-}
-
-.flip-card:hover .shine-effect {
-    opacity: 1;
-    transform: rotate(30deg) translate(-30%, 0);
-}
-
-/* Efecto de presión al hacer clic */
-.flip-card:active .flip-card-container {
-    transform: scale(0.97) translateY(-5px);
-    transition: transform 0.1s ease;
-}
-
-/* Efecto de flash */
-.flip-card:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    opacity: 0;
-    z-index: 10;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.flip-card:active:after {
-    opacity: 1;
-    transition: 0s;
-}
-
-/* Animación para los detalles en el lado trasero */
-.card-details > li {
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.flip-card.is-flipped .card-details > li {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Aplica retraso a cada elemento para una entrada escalonada */
-.flip-card.is-flipped .card-details > li:nth-child(1) { transition-delay: 0.1s; }
-.flip-card.is-flipped .card-details > li:nth-child(2) { transition-delay: 0.2s; }
-.flip-card.is-flipped .card-details > li:nth-child(3) { transition-delay: 0.3s; }
-.flip-card.is-flipped .card-details > li:nth-child(4) { transition-delay: 0.4s; }
-
-/* Aseguramos que el flip no sea problemático en móviles */
-@media (max-width: 768px) {
-    .front-wrapper, .back-wrapper {
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-    
-    /* Mejoramos la visibilidad en móviles */
-    .overlay {
-        background: linear-gradient(
-            to top, 
-            rgba(0, 0, 0, 0.95) 0%, 
-            rgba(0, 0, 0, 0.7) 30%, 
-            rgba(0, 0, 0, 0.4) 60%, 
-            rgba(0, 0, 0, 0.1) 80%
-        );
-    }
-}
-
-/* Agregá esto al final de tu CSS */
-.back-wrapper .overlay {
+.emprendimiento-card__overlay {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.3) 60%,
-    rgba(0, 0, 0, 0.1) 90%
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 70%
   );
+  z-index: 1;
 }
+
+.emprendimiento-card__content {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 1.25rem;
+}
+
+.emprendimiento-card__badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--red);
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.emprendimiento-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* Info extra comentada - no se muestra
+.emprendimiento-card__hover-info { ... }
+.emprendimiento-card__description { ... }
+.emprendimiento-card__details { ... }
+*/

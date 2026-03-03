@@ -29,22 +29,23 @@ const FlipCardsContainer = () => {
   }, [limitView]);
 
   return (
-    <section className="w-full flex flex-col gap-10 items-center justify-center">
+    <section className="w-full flex flex-col gap-12 items-center justify-center">
       <div
         ref={containerRef}
-        className="flex flex-col lg:flex-row flex-wrap items-start gap-10 w-full max-w-[1200px] mx-auto justify-between"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-[1200px] mx-auto"
       >
         {emprendimientos.slice(0, limitView).map((emprendimiento, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{
-              duration: 0.3,
-              delay: index * 0.05,
+              duration: 0.4,
+              delay: index * 0.04,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
-            className="flex justify-center w-full md:w-auto"
+            className="w-full"
           >
             <FlipCard emprendimiento={emprendimiento} />
           </motion.div>

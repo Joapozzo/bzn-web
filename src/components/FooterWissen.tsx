@@ -11,7 +11,7 @@ const WissenFooter = () => {
   };
 
   return (
-    <footer className="bg-[var(--black)] text-white">
+    <footer id="contacto" className="bg-[var(--black)] text-white">
       {/* Top Section */}
       <div className="py-12">
         <div className="max-w-7xl mx-auto px-4">

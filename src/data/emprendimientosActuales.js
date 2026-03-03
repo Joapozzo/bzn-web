@@ -1,5 +1,6 @@
 const emprendimientosActuales = [
   {
+    url: "/proyectos/wissen-df",
     tipo: "Edificio",
     nombre: "WISSEN DF",
     descripcion:
@@ -35,6 +36,23 @@ const emprendimientosActuales = [
       { nombre: "Planta Baja", url: "/pdfs/wissen/baja.jpg" },
       { nombre: "Patio.pdf", url: "/pdfs/wissen/patio.jpg" },
     ],
+  },
+  {
+    url: "/proyectos/tejas-4",
+    tipo: "Casa",
+    nombre: "TEJAS 4",
+    descripcion:
+      "Casa de 2 dormitorios en Tejas 4. Una vivienda con diseño arquitectónico, excelente calidad ambiental y contacto 100% con la naturaleza. 17 min al ingreso de la Ciudad, 30 min a Córdoba.",
+    imgs: ["/imgs/tejas4/1.jpg", "/imgs/tejas4/2.jpg", "/imgs/tejas4/3.jpg", "/imgs/tejas4/4.jpg"],
+    caracteristicas: [
+      { texto: "🚗 Cochera para 2 vehículos" },
+      { texto: "🛋️ Living comedor con doble altura" },
+      { texto: "🛏️ 2 dormitorios con baño en suite" },
+      { texto: "📚 Estudio con posibilidad de 3er dormitorio" },
+      { texto: "🌳 Gran patio y galería con asador" },
+    ],
+    ubicacion: "Tejas 4 barrio cerrado, Villa Carlos Paz, Córdoba",
+    planos: [],
   },
 ];
 

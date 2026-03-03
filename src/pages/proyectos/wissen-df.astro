@@ -1,0 +1,29 @@
+---
+import WissenFeaturesSection from "../../components/CaracteristicasWissen";
+import WissenTipologiasSection from "../../components/TipologiasWissen";
+import WissenFooter from "../../components/FooterWissen";
+import HeroWissen from "../../components/HeroWissen";
+import UbicacionWissen from "../../components/UbicacionWissen";
+import FinanciamientoWissen from "../../components/FinanciamientoWissen";
+import Navbar from "../../components/Navbar";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <Navbar
+    client:visible
+    navLinks={["Ubicación", "Características", "Tipologías", "Contacto"]}
+    isProjectPage={true}
+    homeUrl="/"
+    proyectosSubmenu={[
+      { label: "Wissen DF", href: "/proyectos/wissen-df" },
+      { label: "Tejas 4", href: "/proyectos/tejas-4" },
+    ]}
+  />
+  <HeroWissen client:load />
+  <UbicacionWissen client:load />
+  <WissenFeaturesSection client:load />
+  <WissenTipologiasSection client:load />
+  <FinanciamientoWissen client:load />
+  <WissenFooter client:load />
+</Layout>

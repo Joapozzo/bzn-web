@@ -60,3 +60,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #b92e3b;
 }
+
+/* Cursor de tipeo fluido - HeroProyecto */
+@keyframes typing-cursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.animate-typing-cursor {
+  animation: typing-cursor 1s ease-in-out infinite;
+}
