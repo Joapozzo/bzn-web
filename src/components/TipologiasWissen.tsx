@@ -62,6 +62,8 @@ const WissenTipologiasSection = () => {
         return 'Últimas unidades';
     };
 
+    const isAgotado = (available: number): boolean => available === 0;
+
     const sendWhatsApp = (message: string = "Hola, me interesa WISSEN DF. ¿Podrían contactarme?"): void => {
         const phone = "5493517516450";
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -117,6 +119,18 @@ const WissenTipologiasSection = () => {
                                 animationDelay: `${index * 100}ms`
                             }}
                         >
+                            {/* Overlay Agotado: bloquea clics cuando disponibles === 0 */}
+                            {isAgotado(tipologia.disponibles) && (
+                                <div
+                                    className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-[2px] rounded-2xl cursor-not-allowed"
+                                    aria-label="Tipología agotada"
+                                >
+                                    <span className="text-white text-2xl md:text-3xl font-black tracking-widest uppercase opacity-95">
+                                        Agotado
+                                    </span>
+                                </div>
+                            )}
+
                             {/* Availability Badge */}
                             <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-white text-sm font-bold ${getAvailabilityColor(tipologia.disponibles)} shadow-lg`}>
                                 {tipologia.disponibles} {getAvailabilityText(tipologia.disponibles)}
