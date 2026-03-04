@@ -21,13 +21,13 @@ const WissenTipologiasSection = () => {
     const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
 
     const tipologias: Tipologia[] = [
-        { tipo: "A", supPropia: 42.69, supBalcon: 1.25, supComun: 5.15, supTotal: 49.09, dormitorios: 1, banos: 1, disponibles: 1 },
+        { tipo: "A", supPropia: 42.69, supBalcon: 1.25, supComun: 5.15, supTotal: 49.09, dormitorios: 1, banos: 1, disponibles: 0 },
         { tipo: "B", supPropia: 40.77, supBalcon: 1.25, supComun: 4.54, supTotal: 46.56, dormitorios: 1, banos: 1, disponibles: 1 },
-        { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 1 },
-        { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 1 },
-        { tipo: "E", supPropia: 43.11, supBalcon: 0, supComun: 5.19, supTotal: 48.3, dormitorios: 1, banos: 1, disponibles: 2 },
+        { tipo: "C", supPropia: 42.73, supBalcon: 0, supComun: 5.52, supTotal: 48.25, dormitorios: 1, banos: 1, disponibles: 0 },
+        { tipo: "D", supPropia: 40.15, supBalcon: 0, supComun: 4.80, supTotal: 44.95, dormitorios: 1, banos: 1, disponibles: 0 },
+        { tipo: "E", supPropia: 43.11, supBalcon: 0, supComun: 5.19, supTotal: 48.3, dormitorios: 1, banos: 1, disponibles: 1 },
         { tipo: "F", supPropia: 40.87, supBalcon: 1.25, supComun: 4.93, supTotal: 47.05, dormitorios: 1, banos: 1, disponibles: 2 },
-        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 1, banos: 1, disponibles: 4 }
+        { tipo: "G", supPropia: 44.00, supBalcon: 1.25, supComun: 5.70, supTotal: 50.95, dormitorios: 1, banos: 1, disponibles: 3 }
     ];
 
     // Animaciones en scroll
