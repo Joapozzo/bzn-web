@@ -1,20 +1,18 @@
 ---
-// WhatsAppButton.astro
+import { getWhatsAppUrl } from "../data/whatsapp";
+
 interface Props {
-  phoneNumber?: string;
   message?: string;
   className?: string;
 }
 
+const DEFAULT_MESSAGE = "Hola, podrías darme más información.";
 const { 
-  phoneNumber = "3517516450",
-  message = "Hola, podrías darme más información del edificio Wissen DF.",
+  message = DEFAULT_MESSAGE,
   className = ""
 } = Astro.props;
 
-// Codificar el mensaje para URL
-const encodedMessage = encodeURIComponent(message);
-const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+const whatsappUrl = getWhatsAppUrl(message);
 ---
 
 <a

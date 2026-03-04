@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp, FaHome, FaBath, FaExpand, FaSquare, FaCar, FaStore, FaBolt, FaMapMarkerAlt, FaUsers, FaBuilding } from 'react-icons/fa';
 import { FaShield } from 'react-icons/fa6';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { useWhatsApp } from '../hooks/useWhatsApp';
+import { WHATSAPP_MESSAGES } from '../data/whatsappMessages';
 
 interface Tipologia {
     tipo: string;
@@ -64,11 +66,7 @@ const WissenTipologiasSection = () => {
 
     const isAgotado = (available: number): boolean => available === 0;
 
-    const sendWhatsApp = (message: string = "Hola, me interesa WISSEN DF. ¿Podrían contactarme?"): void => {
-        const phone = "5493517516450";
-        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-    };
+    const { openChat } = useWhatsApp();
 
     const getImagePath = (tipo: string): string => {
         const imageMap: Record<string, string> = {
@@ -227,7 +225,7 @@ const WissenTipologiasSection = () => {
                                         </button>
 
                                         <button
-                                            onClick={() => sendWhatsApp(`Hola, me interesa la tipología ${tipologia.tipo} de WISSEN DF. ¿Podrían contactarme?`)}
+                                            onClick={() => openChat(WHATSAPP_MESSAGES.wissenTipologia(tipologia.tipo))}
                                             className="border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                         >
                                             <FaWhatsapp className="w-5 h-5" />
@@ -345,7 +343,7 @@ const WissenTipologiasSection = () => {
                                 </div>
 
                                 <button
-                                    onClick={() => sendWhatsApp("Hola, me interesa una cochera en WISSEN DF. ¿Podrían contactarme?")}
+                                    onClick={() => openChat(WHATSAPP_MESSAGES.wissenCochera)}
                                     className="w-full border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                 >
                                     <FaWhatsapp className="w-5 h-5" />
@@ -394,7 +392,7 @@ const WissenTipologiasSection = () => {
                                 </div>
 
                                 <button
-                                    onClick={() => sendWhatsApp("Hola, me interesa el local comercial en WISSEN DF. ¿Podrían contactarme?")}
+                                    onClick={() => openChat(WHATSAPP_MESSAGES.wissenLocal)}
                                     className="w-full border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
                                 >
                                     <FaWhatsapp className="w-5 h-5" />

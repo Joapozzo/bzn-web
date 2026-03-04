@@ -7,14 +7,16 @@ import CaracteristicasProyecto from "../../components/CaracteristicasProyecto";
 import DetallesProyecto from "../../components/DetallesProyecto";
 import FinanciamientoProyecto from "../../components/FinanciamientoProyecto";
 import FooterProyecto from "../../components/FooterProyecto";
+import { WHATSAPP_PHONE, WHATSAPP_PHONE_SHORT } from "../../data/whatsapp";
+import { WHATSAPP_MESSAGES } from "../../data/whatsappMessages";
 
 const TEJAS4 = {
   hero: {
     title: "TEJAS 4",
     subtitle: "Casa 2 dormitorios en Tejas 4. Una vivienda con diseño arquitectónico y contacto 100% con la naturaleza.",
     heroImage: "/imgs/tejas4/1.jpg",
-    whatsappMessage: "Hola, quiero más información sobre la casa de 2 dormitorios en Tejas 4.",
-    phone: "5493517659117",
+    whatsappMessage: WHATSAPP_MESSAGES.tejas4,
+    phone: WHATSAPP_PHONE,
   },
   ubicacion: {
     address: "Tejas 4 barrio cerrado",
@@ -75,8 +77,8 @@ const TEJAS4 = {
     showEntregaCuotas: false,
     estadoBadge: "A estrenar",
     slogan: "¿Te interesa? Escribinos y te contamos todos los detalles.",
-    whatsappMessage: "Hola, me interesa la casa de 2 dormitorios en Tejas 4. ¿Podrían darme más información?",
-    phone: "5493517659117",
+    whatsappMessage: WHATSAPP_MESSAGES.tejas4Financiamiento,
+    phone: WHATSAPP_PHONE,
     buttonText: "Consultá por esta propiedad",
   },
   footer: {
@@ -84,10 +86,10 @@ const TEJAS4 = {
     projectNameHighlight: "4",
     projectDescription: "Casa de 2 dormitorios en Tejas 4. Una vivienda con diseño arquitectónico, excelente calidad ambiental y contacto 100% con la naturaleza. Servicios: agua corriente, luz, gas.",
     address: "Tejas 4 barrio cerrado, Colectora, X5101 Villa Carlos Paz, Córdoba",
-    phone: "5493517659117",
-    phoneFormatted: "351-7659117",
+    phone: WHATSAPP_PHONE,
+    phoneFormatted: WHATSAPP_PHONE_SHORT,
     email: "fede.bazan427@gmail.com",
-    whatsappMessage: "Hola, me interesa Tejas 4. ¿Podrían contactarme?",
+    whatsappMessage: WHATSAPP_MESSAGES.tejas4Footer,
     instagramUrl: "https://instagram.com/grupo.bzn",
     showExperienceBlock: true,
   },

@@ -1,8 +1,11 @@
- export const CONTACTO_TELEFONO = "+543517516450";
+import { WHATSAPP_PHONE, getWhatsAppUrl } from "../data/whatsapp";
 
-export function enviarMensajeWhatsApp(texto: string, numero: string) {
-    const mensajeCodificado = encodeURIComponent(texto);
-    const numeroLimpio = numero.replace(/\D/g, "");
-    const url = `https://wa.me/${numeroLimpio}?text=${mensajeCodificado}`;
-    window.open(url, "_blank");
+/** Número de contacto (centralizado en data/whatsapp.ts). Formato display. */
+export const CONTACTO_TELEFONO = WHATSAPP_PHONE;
+
+export function enviarMensajeWhatsApp(texto: string, numero?: string) {
+  const url = numero
+    ? `https://wa.me/${numero.replace(/\D/g, "")}?text=${encodeURIComponent(texto)}`
+    : getWhatsAppUrl(texto);
+  window.open(url, "_blank");
 }

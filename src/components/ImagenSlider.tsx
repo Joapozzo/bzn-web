@@ -20,8 +20,8 @@ interface ImageSliderProps {
 const textoMensaje = "Hola, quiero contactarme con un asesor. ¿Te interesa?";
 
 const stats = [
-  { title: 19, text: "EDIFICIOS" },
-  { title: 600, text: "DEPARTAMENTOS" },
+  { title: 20, text: "EDIFICIOS" },
+  { title: 633, text: "DEPARTAMENTOS" },
   { title: 40, text: "AÑOS DE TRAYECTORIA" },
   { title: 100000, text: "M2 EJECUTADOS" },
 ];

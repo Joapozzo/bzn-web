@@ -1,14 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaHandshake } from 'react-icons/fa';
 import Button from './UI/Button';
-
-const sendWhatsApp = (message: string) => {
-  const phone = "5493517516450";
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-};
+import { useWhatsApp } from '../hooks/useWhatsApp';
+import { WHATSAPP_MESSAGES } from '../data/whatsappMessages';
 
 const FinanciamientoWissen = () => {
+  const { openChat } = useWhatsApp();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -108,11 +105,7 @@ const FinanciamientoWissen = () => {
         }`}>
           <Button
             text="QUIERO MÁS INFORMACIÓN"
-            onClick={() =>
-              sendWhatsApp(
-                "Hola, me interesa el plan de ENTREGA + CUOTAS para WISSEN DF. ¿Podrían contactarme?"
-              )
-            }
+            onClick={() => openChat(WHATSAPP_MESSAGES.wissenFinanciamiento)}
           />
         </div>
       </div>

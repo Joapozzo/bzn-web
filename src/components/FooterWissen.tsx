@@ -1,14 +1,11 @@
 import React from 'react';
-import { MapPin, Building, Instagram, Facebook, MessageCircle, Award } from 'lucide-react';
+import { MapPin, Building, Instagram, Facebook, Award } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useWhatsApp } from '../hooks/useWhatsApp';
+import { WHATSAPP_MESSAGES } from '../data/whatsappMessages';
 
 const WissenFooter = () => {
-  const sendWhatsApp = () => {
-    const phone = "5493517516450";
-    const message = "Hola, me interesa WISSEN DF. ¿Podrían contactarme?";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
+  const { openChat, phoneDisplay } = useWhatsApp();
 
   return (
     <footer id="contacto" className="bg-[var(--black)] text-white">
@@ -41,7 +38,7 @@ const WissenFooter = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <FaWhatsapp className="w-5 h-5 text-red-500 flex-shrink-0" />
-                  <span className="text-sm">+54 351 751-6450</span>
+                  <span className="text-sm">{phoneDisplay}</span>
                 </div>
               </div>
             </div>
@@ -70,7 +67,7 @@ const WissenFooter = () => {
                 </a>
                 
                 <button
-                  onClick={sendWhatsApp}
+                  onClick={() => openChat(WHATSAPP_MESSAGES.wissen)}
                   className="w-12 h-12 bg-gray-800 hover:bg-green-500 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                 >
                   <FaWhatsapp className="w-6 h-6" />

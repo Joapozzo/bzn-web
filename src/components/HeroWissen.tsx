@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Button from "./UI/Button";
+import { WHATSAPP_PHONE } from "../data/whatsapp";
+import { WHATSAPP_MESSAGES } from "../data/whatsappMessages";
 
 const CHAR_DELAY_MS = 85;
 const PAUSE_WHEN_FULL_MS = 2200;
@@ -208,8 +210,8 @@ export default function HeroWissen() {
           Un nuevo concepto de vivienda en el corazón de <span className="font-bold text-white">Córdoba</span>
         </>
       }
-      phone="543517516450"
-      whatsappMessage="Hola, quiero más información sobre WISSEN DF"
+      phone={WHATSAPP_PHONE}
+      whatsappMessage={WHATSAPP_MESSAGES.wissen}
     />
   );
 }

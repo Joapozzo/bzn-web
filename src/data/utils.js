@@ -1,15 +1,13 @@
+import { getWhatsAppUrl, WHATSAPP_PHONE } from "./whatsapp";
+
 export const URL = import.meta.env.PUBLIC_BASE_URL;
 
-export const whatsappMessage =
-  "Hola, me interesa WISSEN DF. ¿Podrían contactarme?";
-export const whatsappNumber = "543517516450";
+/** @deprecated Usar data/whatsapp.ts y hooks/useWhatsApp.ts */
+export const whatsappNumber = WHATSAPP_PHONE;
+export { getWhatsAppUrl };
 
-export const sendWhatsApp = (message = whatsappMessage) => {
-  const encodedMessage = encodeURIComponent(message);
-  window.open(
-    `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-    "_blank"
-  );
+export const sendWhatsApp = (message = "Hola, quisiera más información.") => {
+  window.open(getWhatsAppUrl(message), "_blank");
 };
 
 export const colors = {
