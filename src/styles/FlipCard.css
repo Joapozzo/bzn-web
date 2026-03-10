@@ -8,6 +8,7 @@
   background: var(--black-200, #1a1a1a);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .emprendimiento-card:hover {
@@ -66,8 +67,34 @@
   letter-spacing: -0.02em;
 }
 
-/* Info extra comentada - no se muestra
-.emprendimiento-card__hover-info { ... }
-.emprendimiento-card__description { ... }
-.emprendimiento-card__details { ... }
-*/
+/* Info extra visible al hacer click */
+.emprendimiento-card__hover-info {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.emprendimiento-card__description {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
+
+.emprendimiento-card__details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.emprendimiento-card__details li {
+  padding: 0.2rem 0;
+}
